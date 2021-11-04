@@ -1,4 +1,4 @@
-# Fished
+# fished
 Projekt z przedmiotu "Wstęp do projektowania aplikacji internetowych".
 Aplikacja realizować będzie pomoc dla wędkarzy w organizacji oraz prowadzeniu zawodów wędkarskich. 
 Głównymi założeniami aplikacji są ułatwienia w postaci:
