@@ -57,6 +57,27 @@ input {
     text-align: center;
 }
 
+.base-containter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+
+}
+
+nav {
+    width: 100vw;
+    height: 20vh;
+    background: #32796D 0% 0% no-repeat padding-box;
+    border: 1px solid #000000;
+}
+
+main {
+    width: 100vw;
+    height: 80vh;
+    background: #769463 0% 0% no-repeat padding-box;
+}
+
 @media only screen and (max-device-width: 430px) {
     * {
         font-size: 36px;
