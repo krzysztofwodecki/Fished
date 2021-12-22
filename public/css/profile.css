@@ -1,0 +1,44 @@
+body {
+    background: #548668 0% 0% repeat padding-box;
+    margin: 0;
+}
+
+.base-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+main {
+    grid-column: 1/8;
+    grid-row: 1/7;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+nav {
+    grid-column: 6/8;
+    grid-row: 1/2;
+}
+
+.user-photo {
+    grid-column: 1/3;
+    grid-row: 1/3;
+}
+
+.informations {
+    grid-column: 3/5;
+    grid-row: 1/3;
+}
+
+.gallery {
+    grid-column: 5/7;
+    grid-row: 2/6;
+}
+
+.achievements {
+    grid-column: 5/7;
+    grid-row: 4/6;
+}
