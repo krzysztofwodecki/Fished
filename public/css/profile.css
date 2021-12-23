@@ -37,12 +37,14 @@ nav>div>a>i{
     grid-column: 1/3;
     grid-row: 1/4;
 
+    max-height: 85%;
+    aspect-ratio: 1/1;
+
     margin: 30px;
 
     border-radius: 50%;
     border: 1px solid #000000;
     box-shadow: 0px 3px 6px #00000029;
-    /* background: #FECA4F 0% 0% repeat content-box; */
     background: url('../img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
     background-size: contain;
 }
@@ -51,10 +53,10 @@ nav>div>a>i{
     grid-column: 3/5;
     grid-row: 1/4;
 
-    margin: 30px;
+    margin: 10px;
 
     display: flex;
-
+    overflow: auto;
 }
 
 .informations>div{
@@ -67,12 +69,22 @@ nav>div>a>i{
     grid-row: 2/7;
 
     margin: 10px;
-    padding: 30px;
 
     border-radius: 10%;
     border: 1px solid #000000;
     background: #FECA4F 0% 0% repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
+
+    overflow: hidden;
+}
+
+.gallery-inner{
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+
+    padding: 30px;
+
+    overflow-y: auto;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -80,28 +92,75 @@ nav>div>a>i{
     grid-gap: 30px;
 }
 
-.gallery>div{
+.gallery-inner>div{
     border: 1px solid #000000;
+    min-height: 22vh;
 }
 
-.achievements {
+.achievements-section {
     grid-column: 1/5;
     grid-row: 4/7;
 
     margin: 10px;
-    padding: 30px;
 
     border-radius: 10% / 20%;
     border: 1px solid #000000;
     background: #FECA4F 0% 0% repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
-    
+
+    overflow: hidden;
+}
+
+.achievements-inner{
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+
+    padding: 30px;
+
+    overflow-y: auto;
+
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 20px;
 }
 
-.achievements>div{
+.achievement {
     border: 1px solid #000000;
+    min-height: 18vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    font: normal normal bold 14px/14px Arial;
+    color: white;
+}
+
+.achievement>p{
+    margin: 0;
+}
+
+.cup-photo{
+    border: 1px solid #000000;
+    border-radius: 50%;
+
+    min-height: 50%;
+    max-height: 50%;
+
+    aspect-ratio: 1/1;
+}
+
+.achievements-inner::-webkit-scrollbar, .gallery-inner::-webkit-scrollbar, .informations::-webkit-scrollbar {
+    width: 0.8vw;
+  }
+   
+  .achievements-inner::-webkit-scrollbar-track, .gallery-inner::-webkit-scrollbar-track, .informations::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+.achievements-inner::-webkit-scrollbar-thumb, .gallery-inner::-webkit-scrollbar-thumb, .informations::-webkit-scrollbar-thumb {
+    background-color: #116C73;
+    outline: 1px solid #548668;
 }
