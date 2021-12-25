@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+}
+
+.base-container {
+    height: 100vh;
+    background: #548668 0% 0% repeat padding-box;
+}
+
+nav {
+    position: absolute;
+    left: 10px;
+}
+
+nav>div>a>i {
+    font-size: 3em;
+    color: white;
+}
+
+.attendee-list {
+    position: relative;
+    top: 3em;
+    height: calc(100% - 3em);
+
+    margin: 10px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.attendee-list>div {
+    border: 1px solid black;
+    border-radius: 5%/18%;
+
+    width: 100%;
+    height: 100%;
+    background-color: #FECA4F;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+}
+
+.attendant-photo {
+    grid-column: 1/2;
+    grid-row: 1/2;
+
+    aspect-ratio: 1/1;
+    height: 80%;
+
+    border-radius: 50%;
+    border: 1px solid black;
+
+    margin: 5px;
+}
+
+.informations {
+    grid-column: 2/4;
+    grid-row: 1/2;
+
+    font: normal normal bold 12px/12px Arial;
+    color: #548668
+}
+
+.more-icon {
+    grid-column: 4/5;
+    grid-row: 1/2;
+
+    position: relative;
+    right: 50px;
+}
