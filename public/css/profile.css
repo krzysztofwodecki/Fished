@@ -127,7 +127,7 @@ nav>div>a>i{
 
 .achievement {
     border: 1px solid #000000;
-    min-height: 18vh;
+    min-height: 25vh;
 
     display: flex;
     flex-direction: column;
@@ -136,6 +136,8 @@ nav>div>a>i{
 
     font: normal normal bold 14px/14px Arial;
     color: white;
+
+    background: #7694634D 0% 0% no-repeat padding-box;
 }
 
 .achievement>p{
@@ -163,4 +165,7 @@ nav>div>a>i{
 .achievements-inner::-webkit-scrollbar-thumb, .gallery-inner::-webkit-scrollbar-thumb, .informations::-webkit-scrollbar-thumb {
     background-color: #116C73;
     outline: 1px solid #548668;
+
+    border: 1px solid black;
+    border-radius: 50%/2%;
 }
