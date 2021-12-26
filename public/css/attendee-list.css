@@ -54,11 +54,16 @@ nav>div>a>i {
     aspect-ratio: 1/1;
     height: 80%;
 
+    margin: 10px;
+
     border-radius: 50%;
     border: 1px solid black;
 
     align-self: center;
     justify-self: center;
+
+    background: url('../img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
+    background-size: contain;
 }
 
 .informations {
@@ -102,4 +107,48 @@ nav>div>a>i {
     
     border: 1px solid black;
     border-radius: 50%/1%;
+}
+
+@media only screen and (max-device-width: 780px) {
+    nav>div>a>i {
+        font-size: 5em;
+    }
+    
+    .attendee-list {
+        margin: 0 2em 3em 2em;
+        top: 5em;
+
+        height: calc(100% - 8em);
+        width: calc(100% - 4em);
+    }
+    
+    .attendant-photo {
+        height: 60%;
+    }
+}
+
+@media only screen and (max-device-width: 430px) {
+    nav>div>a>i {
+        font-size: 6em;
+    }
+
+    .attendee-list {
+        grid-template-columns: 1fr;
+        margin: 0 2em 3em 2em;
+        top: 6em;
+
+        height: calc(100% - 9em);
+        width: calc(100% - 4em);
+    }
+
+    .attendee-list>div {
+        border-radius: 3%/15%;
+    
+        min-height: 10vh;
+        max-height: 10vh;
+    }
+
+    .informations, .more {
+        font-size: 1.5em;
+    }
 }
