@@ -2,7 +2,7 @@ body {
     margin: 0;
 }
 
-.container {
+.base-container {
     width: 100vw;
     height: 100vh;
     background: #FECA4F 0% 0% no-repeat padding-box;
@@ -33,18 +33,7 @@ form.login {
     background: #FCFCFCCC 0% 0% no-repeat padding-box;
     box-shadow: 0px 6px 6px #00000029;
     border: 1px solid #707070;
-    border-radius: 143px;
-}
-
-button {
-    background: #FECA4F 0% 0% no-repeat padding-box;
-    box-shadow: 0px 9px 9px #00000029;
-    border-radius: 22px;
-    width: 30%;
-    border: none;
-    color: #116C73;
-    margin: 1em;
-    line-height: 2.5em;
+    border-radius: 150px;
 }
 
 input {
@@ -57,8 +46,30 @@ input {
     text-align: center;
 }
 
-@media only screen and (max-device-width: 430px) {
-    * {
+button {
+    background: #FECA4F 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 2px #00000029;
+    border-radius: 20px;
+    width: 30%;
+    border: none;
+    font: normal normal thin 14px/14px Arial;
+    color: #116C73;
+    margin: 1em;
+    line-height: 2.5em;
+}
+
+.register {
+    margin-top: 1em;
+}
+
+a {
+    font: normal normal normal 16px/16px Arial;
+    color: white;
+    text-shadow: #707070;
+}
+
+@media only screen and (max-device-width: 500px) {
+    *, a {
         font-size: 36px;
     }
 
