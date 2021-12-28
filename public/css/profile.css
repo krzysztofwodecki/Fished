@@ -80,7 +80,7 @@ nav>div>a>i{
 
     margin: 10px;
 
-    border-radius: 10%;
+    border-radius: 30px;
     border: 1px solid #000000;
     background: #FECA4F 0% 0% repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
@@ -104,7 +104,7 @@ nav>div>a>i{
 
 .gallery-inner>div{
     border: 1px solid #000000;
-    min-height: 22vh;
+    aspect-ratio: 1/1.5;
 }
 
 .achievements-section {
@@ -113,7 +113,7 @@ nav>div>a>i{
 
     margin: 10px;
 
-    border-radius: 10% / 20%;
+    border-radius: 30px;
     border: 1px solid #000000;
     background: #FECA4F 0% 0% repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
@@ -130,14 +130,14 @@ nav>div>a>i{
     overflow-y: auto;
 
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 20px;
 }
 
 .achievement {
     border: 1px solid #000000;
-    min-height: 25vh;
+    aspect-ratio: 1/1.5;
 
     display: flex;
     flex-direction: column;
@@ -199,12 +199,12 @@ nav>div>a>i{
     }
 
     .user-photo {
-        min-height: 30%;
-        max-height: 30%;
+        min-height: 25%;
+        max-height: 25%;
     }
 
     .informations {
-        height: 20%;
+        height: 25%;
 
         margin: 0 10%;
         justify-content: flex-start;
