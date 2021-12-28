@@ -36,7 +36,7 @@ nav>div>a>i {
 
 .attendee-list>div {
     border: 1px solid black;
-    border-radius: 3%/15%;
+    border-radius: 30px;
 
     min-height: 20vh;
     max-height: 20vh;
@@ -62,7 +62,15 @@ nav>div>a>i {
     align-self: center;
     justify-self: center;
 
-    background: url('../img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
+    background: #FECA4F 0% 0% no-repeat padding-box;
+}
+
+.attendant-photo>div {
+    height: calc(100% - 40px);
+    width: calc(100% - 40px);
+    margin: 20px;
+
+    background: url('../img/logo.svg') 0% 50% no-repeat padding-box;
     background-size: contain;
 }
 
@@ -70,12 +78,13 @@ nav>div>a>i {
     grid-column: 2/4;
     grid-row: 1/2;
 
+    white-space: nowrap;
     font: normal normal bold 12px/12px Arial;
-    color: #548668;
+    color: #116C73;
 
     align-self: center;
-
     margin: 0 10px 0 10px;
+
 }
 
 .more {
@@ -90,7 +99,7 @@ nav>div>a>i {
 
 .more>a>i {
     font-size: 2em;
-    color: #548668;
+    color: #116C73;
 }
 
 .attendee-list::-webkit-scrollbar {

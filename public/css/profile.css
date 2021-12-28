@@ -20,7 +20,7 @@ nav {
 
     width: 20vw;
     height: 8vh;
-
+    
     margin: 10px;
 
     display: flex;
@@ -45,7 +45,17 @@ nav>div>a>i{
     border-radius: 50%;
     border: 1px solid #000000;
     box-shadow: 0px 3px 6px #00000029;
+    background: #FECA4F 0% 0% no-repeat padding-box;
+
+    overflow: hidden;
+}
+
+.user-photo>div {
+    height: calc(100% - 40px);
+    width: calc(100% - 40px);
+    margin: 20px;
     background: url('../img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
+
     background-size: contain;
 }
 
@@ -154,6 +164,10 @@ nav>div>a>i{
     aspect-ratio: 1/1;
 }
 
+.mobile-icons {
+    display: none;
+}
+
 .achievements-inner::-webkit-scrollbar, .gallery-inner::-webkit-scrollbar, .informations::-webkit-scrollbar {
     width: 0.8vw;
   }
@@ -168,4 +182,68 @@ nav>div>a>i{
 
     border: 1px solid black;
     border-radius: 50%/2%;
+}
+
+@media only screen and (max-device-width: 500px) {
+    .gallery, .achievements-section, .add-photo, .edit {
+        display: none;
+    }
+
+    .return>a {
+        font-size: 3em;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-photo {
+        min-height: 30%;
+        max-height: 30%;
+    }
+
+    .informations {
+        height: 20%;
+
+        margin: 0 10%;
+        justify-content: flex-start;
+    }
+
+    .informations>div {
+        gap: 50px;
+        font-size: 3em;
+    }
+
+    .mobile-icons {
+        height: 50%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .mobile-icons>a {
+        max-height: 30%;
+        min-width: 80%;
+        background-color: #FECA4F;
+        border: 1px solid black;
+        border-radius: 40px;
+
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
+
+        font-size: 2em;
+        color: white;
+        text-decoration: none;
+    }
+
+    .mobile-icons>a>i {
+        font-size: 2em;
+    }
 }
