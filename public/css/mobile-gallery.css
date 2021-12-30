@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+}
+
+.base-container {
+    height: 100vh;
+    width: 100vw;
+
+    background: #548668 0% 0% repeat padding-box;
+}
+
+nav {
+    height: 10%;
+    width: 100%;
+
+    position: fixed;
+    padding: 10px 20px;
+}
+
+nav>div>a>i {
+    font-size: 7em;
+    color: white;
+}
+
+main {
+    height: calc(90% - 50px);
+    width: calc(100% - 100px);    
+
+    position: fixed;
+    top: calc(0px + 10%);
+
+    overflow: hidden;
+
+    margin: 0px 50px 50px 50px;
+}
+
+.photos {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(min-content, max-content);
+
+    overflow: auto;
+}
+
+.photos>div {
+    margin: 20px;
+
+    aspect-ratio: 1/1.5;
+    border: 1px solid black;
+}
+
+.achievements {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(min-content, max-content);
+
+    overflow: auto;
+}
+
+.achievements>div {
+    margin: 20px;
+    padding: 10px;
+
+    aspect-ratio: 1/1.5;
+    border: 1px solid black;
+    background-color: #7694638a ;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.cup-photo {
+    border: 1px solid #000000;
+    border-radius: 50%;
+
+    min-height: 50%;
+    max-height: 50%;
+
+    aspect-ratio: 1/1;
+}
+
+.achievements>div>* {
+    font: normal normal normal 20px/20px Arial;
+    color: white;
+
+    margin: 10px;
+}
+
+.photos::-webkit-scrollbar, .achievements::-webkit-scrollbar {
+    width: 1.2vw;
+}
+   
+.photos::-webkit-scrollbar-track, .achievements::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+.photos::-webkit-scrollbar-thumb, .achievements::-webkit-scrollbar-thumb {
+    background-color: #116C73;
+    outline: 1px solid #548668;
+
+    border: 1px solid black;
+    border-radius: 10px;
+}
