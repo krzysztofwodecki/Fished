@@ -34,7 +34,7 @@ main {
     margin: 0px 50px 50px 50px;
 }
 
-.photos {
+.photos, .achievements, .news {
     height: 100%;
     width: 100%;
 
@@ -45,7 +45,7 @@ main {
     overflow: auto;
 }
 
-.photos>div {
+.photos>div, .achievements>div, .news>div {
     margin: 20px;
 
     aspect-ratio: 1/1.5;
@@ -53,28 +53,21 @@ main {
 }
 
 .achievements {
-    height: 100%;
-    width: 100%;
-
-    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(min-content, max-content);
-
-    overflow: auto;
 }
 
-.achievements>div {
-    margin: 20px;
+.achievements>div, .news>div {
     padding: 10px;
 
-    aspect-ratio: 1/1.5;
-    border: 1px solid black;
     background-color: #7694638a ;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
+    font: normal normal normal 12px/12px Arial;
+    font-size: 1em;
+    color: white;
 }
 
 .cup-photo {
@@ -87,6 +80,25 @@ main {
     aspect-ratio: 1/1;
 }
 
+.news {
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: auto;
+}
+
+.news>div {
+    justify-content: space-around;
+}
+
+.news-photo {
+    width: 70%;
+    aspect-ratio: 1/1;
+
+    border: 1px solid black;
+
+    background: url('../img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
+    background-size: contain;
+}
+
 .achievements>div>* {
     font: normal normal normal 20px/20px Arial;
     color: white;
@@ -94,15 +106,15 @@ main {
     margin: 10px;
 }
 
-.photos::-webkit-scrollbar, .achievements::-webkit-scrollbar {
+.photos::-webkit-scrollbar, .achievements::-webkit-scrollbar, .news::-webkit-scrollbar {
     width: 1.2vw;
 }
    
-.photos::-webkit-scrollbar-track, .achievements::-webkit-scrollbar-track {
+.photos::-webkit-scrollbar-track, .achievements::-webkit-scrollbar-track, .news::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
    
-.photos::-webkit-scrollbar-thumb, .achievements::-webkit-scrollbar-thumb {
+.photos::-webkit-scrollbar-thumb, .achievements::-webkit-scrollbar-thumb, .news::-webkit-scrollbar-thumb {
     background-color: #116C73;
     outline: 1px solid #548668;
 

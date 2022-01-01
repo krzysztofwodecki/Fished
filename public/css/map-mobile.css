@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+}
+
+.base-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+nav>a {
+    height: 7vh;
+    aspect-ratio: 1/1;
+
+    position: fixed;
+    margin: 20px;
+
+    border: 1px solid black;
+    border-radius: 50%;
+
+    background: #FECA4F;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+nav>a>i {
+    font: normal normal normal 12px/12px Arial;
+    font-size: 5em;
+    color: #116C73;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+
+    background: #548668 0% 0% repeat padding-box;;
+}

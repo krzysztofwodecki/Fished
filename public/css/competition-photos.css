@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+}
+
+.base-container {
+    height: 100vh;
+    width: 100vw;
+
+    background: #548668 0% 0% repeat padding-box;
+}
+
+nav {
+    height: 10%;
+    width: 100%;
+
+    position: fixed;
+    padding: 10px 20px;
+}
+
+nav>div>a>i {
+    font-size: 4em;
+    color: white;
+}
+
+main {
+    height: calc(90% - 50px);
+    width: calc(100% - 100px);    
+
+    position: fixed;
+    top: calc(0px + 10%);
+
+    overflow: hidden;
+
+    margin: 0px 50px 50px 50px;
+}
+
+.photos {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: minmax(min-content, max-content);
+
+    overflow: auto;
+}
+
+.photos>div {
+    margin: 20px;
+
+    aspect-ratio: 1/1.5;
+    border: 1px solid black;
+    
+}
+
+.add-photo>a {
+    height: 100%;
+    width: 100%;
+
+    text-decoration: none;
+
+    background: #fec94fab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: normal normal normal 12px/12px Arial;
+    font-size: 3em;
+    color: white;
+}
+
+.photos::-webkit-scrollbar, .achievements::-webkit-scrollbar {
+    width: 0.8vw;
+}
+   
+.photos::-webkit-scrollbar-track, .achievements::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+.photos::-webkit-scrollbar-thumb, .achievements::-webkit-scrollbar-thumb {
+    background-color: #116C73;
+    outline: 1px solid #548668;
+
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+@media only screen and (max-device-width: 800px) {
+    nav>div>a {
+        font-size: 2em;
+    }
+
+    .photos {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media only screen and (max-device-width: 430px) {
+    .photos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+}
+
+.base-container {
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #548668 0% 0% repeat padding-box;;
+}
+
+nav {
+    height: 5vh;
+
+    padding: 5px 0 15px 0;
+}
+
+a {
+    font: normal normal bold 12px/12px Arial;
+    font-size: 3em;
+    color: white;
+    text-decoration: none;
+
+    margin: 0 15px;
+}
+
+main {
+    height: calc(95vh - 40px);
+    width: calc(100vw - 40px);
+
+    margin: 0px 20px 20px;
+}
+
+.result-list {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 10px 10px 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.result-list>div {
+    width: calc(100% - 20px);
+    min-height: 5vh;
+    max-height: 5vh;
+
+    border: 1px solid black;
+    background-color: #fec94f;
+    border-radius: 5px;
+
+    padding: 0px 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+
+    font: normal normal bold 12px/12px Arial;
+    color: #116C73;
+}
+
+.result-list::-webkit-scrollbar, .achievements::-webkit-scrollbar {
+    width: 0.8vw;
+}
+   
+.result-list::-webkit-scrollbar-track, .achievements::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+.result-list::-webkit-scrollbar-thumb, .achievements::-webkit-scrollbar-thumb {
+    background-color: #116C73;
+    outline: 1px solid #548668;
+
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+@media only screen and (max-device-width: 430px) {
+    * {
+        font-size: 3em;
+    }
+
+    nav {
+        height: 7vh;
+        font-size: 0.01em;
+    }
+
+    main {
+        height: calc(93vh - 40px);
+    }
+
+    .result-list {
+        gap: 20px;
+    }
+}
