@@ -54,7 +54,7 @@ nav>div>a>i{
     height: calc(100% - 40px);
     width: calc(100% - 40px);
     margin: 20px;
-    background: url('../img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
+    background: url('public/img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
 
     background-size: contain;
 }

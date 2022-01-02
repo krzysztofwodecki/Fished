@@ -1,14 +1,17 @@
 <?php
 
-    class A {
-        function __toString(){
-            return 'wiad';
-        }
-    }
+require 'Routing.php';
 
-   $className = 'A';
-   $instance = new $className();
+$path = trim($_SERVER['REQUEST_URI'], '/');
+$path = parse_url($path, PHP_URL_PATH);
 
-    echo $instance
+Routing::get('index', 'DefaultController');
+Routing::get('mainpage', 'DefaultController');
+Routing::get('profile', 'DefaultController');
+Routing::get('competition', 'DefaultController');
+Routing::get('results', 'DefaultController');   
+Routing::get('attendee_list', 'DefaultController');
+Routing::get('competition_photos', 'DefaultController');
+Routing::run($path);
 
-?>
+ 
