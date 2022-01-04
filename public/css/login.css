@@ -58,6 +58,10 @@ button {
     line-height: 2.5em;
 }
 
+button:hover {
+    background: #ecbf4a 0% 0% no-repeat padding-box;
+}
+
 .register {
     margin-top: 1em;
 }
@@ -68,8 +72,10 @@ a {
     text-shadow: #707070;
 }
 
-input::placeholder {
-    opacity: 0;
+.messages, .register>a {
+    margin-bottom: 1em;
+    font: normal normal normal 16px/16px Arial;
+    color: #116C73;
 }
 
 @media only screen and (max-device-width: 500px) {

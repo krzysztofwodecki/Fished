@@ -8,14 +8,19 @@
 <body>
     <div class="base-container">
         <div class="logo">
-            <img src="public/img/logo.svg">
+            <a href="../">
+                <img src="public/img/logo.svg">
+            </a>
         </div>
 
         <div class="login-container">
             <form class="login" action="login" method="POST">
                 <div class="messages">
-                    <?php if(isset($message)) {
-                        echo $message;
+                    <?php
+                    if(isset($messages)){
+                        foreach($messages as $message) {
+                            echo $message;
+                        }
                     }
                     ?>
                 </div>
@@ -28,7 +33,7 @@
         </div>
 
         <div class="register">
-            <a href="#">Nie jesteś użytkownikiem? Kliknij, aby się zarejestrować...</a>
+            <a href="register">Nie jesteś użytkownikiem? Kliknij, aby się zarejestrować...</a>
         </div>
     </div>
 </body>

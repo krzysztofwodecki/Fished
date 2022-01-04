@@ -70,7 +70,7 @@ nav>div>a>i {
     width: calc(100% - 40px);
     margin: 20px;
 
-    background: url('public/img/logo.svg') 0% 50% no-repeat padding-box;
+    background: url('../img/logo.svg') 0% 50% no-repeat padding-box;
     background-size: contain;
 }
 

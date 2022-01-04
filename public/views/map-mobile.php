@@ -9,7 +9,7 @@
 <body>
     <div class="base-container">
         <nav>
-            <a href="#">
+            <a href="competition">
                 <i class="fas fa-long-arrow-alt-left"></i>
             </a>
         </nav>

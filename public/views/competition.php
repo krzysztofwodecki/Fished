@@ -10,7 +10,7 @@
     <div class="base-container">
         <nav>
             <div class ="return">
-                <a href="#">
+                <a href="mainpage">
                     <i class="fas fa-long-arrow-alt-left"></i>
                 </a>
             </div>
@@ -52,19 +52,19 @@
     
                 <div class="icons">
                     <div class="score-list">
-                        <a href="#">
+                        <a href="results">
                             <i class="fas fa-trophy"></i>
                         </a>
                     </div>
                     
                     <div class="uploaded-photos">
-                        <a href="#">
+                        <a href="competition_photos">
                             <i class="fas fa-images"></i>
                         </a>
                     </div>
     
                     <div class="attendees">
-                        <a href="#">
+                        <a href="attendee_list">
                             <i class="fas fa-users"></i>
                         </a>
                     </div>
@@ -73,37 +73,37 @@
 
             <div class="mobile-view">
                 <div class="map-icon">
-                    <a href="#">
+                    <a href="map_mobile">
                         <i class="fas fa-map"></i>
                     </a>
                 </div>
 
                 <div class="return-mobile">
-                    <a href="#">
+                    <a href="mainpage">
                         <i class="fas fa-long-arrow-alt-left"></i>
                     </a>
                 </div>
                 
                 <div class="uploaded-photos-mobile">
-                    <a href="#">
+                    <a href="competition_photos">
                         <i class="fas fa-images"></i>
                     </a>
                 </div>
 
                 <div class="news-mobile">
-                    <a href="#">
+                    <a href="news_mobile">
                         <i class="fas fa-bell"></i>
                     </a>
                 </div>
 
                 <div class="score-list-mobile">
-                    <a href="#">
+                    <a href="results">
                         <i class="fas fa-trophy"></i>
                     </a>
                 </div>
 
                 <div class="attendees-mobile">
-                    <a href="#">
+                    <a href="attendee_list">
                         <i class="fas fa-users"></i>
                     </a>
                 </div>

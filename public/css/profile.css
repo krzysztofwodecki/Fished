@@ -54,7 +54,7 @@ nav>div>a>i{
     height: calc(100% - 40px);
     width: calc(100% - 40px);
     margin: 20px;
-    background: url('public/img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
+    background: url('../img/logo.svg') 0% 50% no-repeat padding-box, #FECA4F 0% 0% no-repeat padding-box;
 
     background-size: contain;
 }
@@ -135,7 +135,7 @@ nav>div>a>i{
     grid-gap: 20px;
 }
 
-.achievement {
+.achievements-inner>div {
     border: 1px solid #000000;
     aspect-ratio: 1/1.5;
 
@@ -150,7 +150,7 @@ nav>div>a>i{
     background: #7694634D 0% 0% no-repeat padding-box;
 }
 
-.achievement>p{
+.achievements-inner>div>p{
     margin: 0;
 }
 

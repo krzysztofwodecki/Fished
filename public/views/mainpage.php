@@ -16,7 +16,7 @@
             </div>
 
             <div class ="user-profile">
-                <a href="#">
+                <a href="profile">
                     <i class="fas fa-user"></i>
                 </a>
             </div>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="logout">
-                <a href="#">
+                <a href="../">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>
@@ -36,181 +36,13 @@
 
         <main>
             <section>
-                <div class="competition">
+                <a class="competition" href="competition">
                     <div class="inner-competition">
                         <h2>Zawody 1</h2>
                         <p>21.11.2021r.</p>
                         <p>Niepołomice</p>
                     </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomiceeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div> 
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomiceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div> 
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomiceeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div>  
-
-                <div class="competition">
-                    <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
-                    </div>
-                </div> 
+                </a>
             </section>
         </main>
     </div>

@@ -32,4 +32,20 @@ class DefaultController extends AppController {
         $this->render('competition-photos');
     }
 
+    public function achievements_mobile() {
+        $this->render('achievements-mobile');
+    }
+
+    public function map_mobile() {
+        $this->render('map-mobile');
+    }
+
+    public function photos_mobile() {
+        $this->render('photos-mobile');
+    }
+
+    public function news_mobile() {
+        $this->render('news-mobile');
+    }
+
 }
