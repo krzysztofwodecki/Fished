@@ -24,11 +24,11 @@
                     }
                     ?>
                 </div>
-                <input name="email" type="text" placeholder="email@email.com" onfocus="this.placeholder = ''"
-                       onblur="this.placeholder = 'email@email.com'">
-                <input name="password" type="password" placeholder="password" onfocus="this.placeholder = ''"
-                       onblur="this.placeholder = 'password'">
-                <button type="submit">LOGIN</button>
+                <input name="email" type="text" placeholder="E-mail" onfocus="this.placeholder = ''"
+                       onblur="this.placeholder = 'E-mail'">
+                <input name="password" type="password" placeholder="Hasło" onfocus="this.placeholder = ''"
+                       onblur="this.placeholder = 'Hasło'">
+                <button type="submit">Zaloguj się</button>
             </form>
         </div>
 

@@ -48,4 +48,8 @@ class DefaultController extends AppController {
         $this->render('news-mobile');
     }
 
+    public function register() {
+        $this->render('register');
+    }
+
 }
