@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/mobile-gallery.css"> 
     <link rel="icon" href="public/img/icon.svg">
     <script src="https://kit.fontawesome.com/8ac407c03d.js" crossorigin="anonymous"></script>
-    <title>Fished - zdjęcia</title>
+    <title>Fished - zdjęcia użytkownika</title>
 </head>
 
 

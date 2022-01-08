@@ -1,28 +1,29 @@
 <?php
 
 require_once 'AppController.php';
+require_once __DIR__.'/../models/Photo.php';
 
-class PhotosController extends AppController {
+class PhotoController extends AppController {
     const MAX_FILE_SIZE = 1024*1024;
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
-    const UPLOAD_DIRECTORY = '../public/uploads/';
+    const UPLOAD_DIRECTORY = '/../public/uploads/photos_on_profile/';
 
     private $message = [];
 
-    public function addPhoto(string $destination) {
-        if($this->isPost() && is_uploaded_file($_FILES['files']['tmp_name']) && $this->validate($_FILES['files'])) {
+    public function addPhoto() {
+
+        if($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
             move_uploaded_file(
-                $_FILES['files']['tmp_name'],
+                $_FILES['file']['tmp_name'],
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
 
-            //TODO saving photos with destination
-            $photo = new Photo($destination, $_FILES['file']['name']);
+            $photo = new Photo($_FILES['file']['name']);
 
-            return $this->render('projects', ['messages' => $this->message]);
+            return $this->render('profile', ['messages' => $this->message , 'photo' => $photo]);
         }
 
-        return $this->render('projects', ['messages' => $this->message]);
+        return $this->render('profile', ['messages' => $this->message]);
     }
 
     private function validate(array $file):bool {

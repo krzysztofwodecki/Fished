@@ -9,10 +9,23 @@
 <body>
     <div class="base-container">
         <nav>
+            <div class="messages">
+                <?php
+                if(isset($messages)){
+                    foreach($messages as $message) {
+                        echo $message;
+                    }
+                }
+                ?>
+            </div>
+
             <div class="add-photo">
-                <a href="#">
-                    <i class="fas fa-plus"></i>
-                </a>
+                <form action="addPhoto" method="POST" ENCTYPE="multipart/form-data">
+                    <input type="file" name="file" id="upload-button" onchange="this.form.submit()" hidden/>
+                    <label for="upload-button">
+                        <i class="fas fa-plus"></i>
+                    </label>
+                </form>
             </div>
 
             <div class="edit">
@@ -38,13 +51,19 @@
                     <h2>Jan Kowalski</h2>
                     <h3>23.05.1964r.</h3>
                     <h3>730 234 512</h3>
-                    <p>jan.kowalski@mail.com</p>
+                    <p><?php
+                        if(isset($messages)){
+                            foreach($messages as $message) {
+                                echo $message;
+                            }
+                        }
+                        ?></p>
                 </div>
             </section>
 
             <section class="gallery"> 
                 <section class="gallery-inner">
-                    <div></div>
+                    <img src="public/uploads/photos_on_profile/<?= $photo->getName() ?>">
                 </section>
             </section>
 

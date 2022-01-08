@@ -6,9 +6,15 @@ $path = trim($_SERVER['REQUEST_URI'], '/');
 $path = parse_url($path, PHP_URL_PATH);
 
 Routing::get('', 'DefaultController');
+
 Routing::post('login', 'SecurityController');
+
 Routing::get('mainpage', 'DefaultController');
+
 Routing::get('profile', 'DefaultController');
+Routing::post('addPhoto', 'PhotoController');
+
+
 Routing::get('competition', 'DefaultController');
 Routing::get('results', 'DefaultController');   
 Routing::get('attendee_list', 'DefaultController');
