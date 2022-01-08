@@ -51,19 +51,17 @@
                     <h2>Jan Kowalski</h2>
                     <h3>23.05.1964r.</h3>
                     <h3>730 234 512</h3>
-                    <p><?php
-                        if(isset($messages)){
-                            foreach($messages as $message) {
-                                echo $message;
-                            }
-                        }
-                        ?></p>
+                    <p>mail@gmail.com</p>
                 </div>
             </section>
 
             <section class="gallery"> 
                 <section class="gallery-inner">
-                    <img src="public/uploads/photos_on_profile/<?= $photo->getName() ?>">
+                    <img src="public/uploads/photos_on_profile/obraz_2022-01-08_202027.png">
+                    <img src="public/uploads/photos_on_profile/obraz_2022-01-08_202027.png">
+                    <img src="public/uploads/photos_on_profile/obraz_2022-01-08_202027.png">
+                    <img src="public/uploads/photos_on_profile/obraz_2022-01-08_202027.png">
+
                 </section>
             </section>
 
