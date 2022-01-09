@@ -28,7 +28,7 @@
             </div>
 
             <div class="logout">
-                <a href="../">
+                <a href="logout">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>

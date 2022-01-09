@@ -9,9 +9,14 @@ Routing::get('', 'DefaultController');
 
 Routing::post('login', 'SecurityController');
 
+Routing::get('logout', 'SecurityController');
+
+Routing::get('registerPage', 'DefaultController');
+Routing::post('register', 'SecurityController');
+
 Routing::get('mainpage', 'DefaultController');
 
-Routing::get('profile', 'DefaultController');
+Routing::get('profile', 'ProfileController');
 Routing::post('addPhoto', 'PhotoController');
 
 
@@ -23,7 +28,7 @@ Routing::get('photos_mobile', 'DefaultController');
 Routing::get('map_mobile', 'DefaultController');
 Routing::get('achievements_mobile', 'DefaultController');
 Routing::get('news_mobile', 'DefaultController');
-Routing::get('register', 'DefaultController');
+
 
 Routing::run($path);
 

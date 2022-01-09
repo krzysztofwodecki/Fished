@@ -48,10 +48,10 @@
 
             <section class="informations">
                 <div>
-                    <h2>Jan Kowalski</h2>
-                    <h3>23.05.1964r.</h3>
-                    <h3>730 234 512</h3>
-                    <p>mail@gmail.com</p>
+                    <h2><?= $name.' '.$surname ?></h2>
+                    <h3><?= $birth_date ?></h3>
+                    <h3/><?= $phone_number ?></h3></h3>
+                    <p><?= $email ?></h3></p>
                 </div>
             </section>
 

@@ -20,10 +20,10 @@ class PhotoController extends AppController {
 
             $photo = new Photo($_FILES['file']['name']);
 
-            return $this->render('profile', ['messages' => $this->message , 'photo' => $photo]);
+            $this->render('profile', ['messages' => $this->message , 'photo' => $photo]);
         }
 
-        return $this->render('profile', ['messages' => $this->message]);
+        $this->render('profile', ['messages' => $this->message]);
     }
 
     private function validate(array $file):bool {

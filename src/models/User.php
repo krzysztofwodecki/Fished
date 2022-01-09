@@ -5,9 +5,10 @@ class User {
     private $password;
     private $name;
     private $surname;
+    private $birth_date;
+    private $phone_number;
 
-    public function __construct(string $email, string $password, string $name, string $surname)
-    {
+    public function __construct(string $email, string $password, string $name, string $surname) {
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
@@ -52,6 +53,26 @@ class User {
     public function setSurname(string $surname)
     {
         $this->surname = $surname;
+    }
+
+    public function getBirthDate()
+    {
+        return $this->birth_date;
+    }
+
+    public function setBirthDate($birth_date): void
+    {
+        $this->birth_date = $birth_date;
+    }
+
+    public function getPhoneNumber()
+    {
+        return $this->phone_number;
+    }
+
+    public function setPhoneNumber($phone_number): void
+    {
+        $this->phone_number = $phone_number;
     }
 
 

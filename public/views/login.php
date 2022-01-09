@@ -33,7 +33,7 @@
         </div>
 
         <div class="register">
-            <a href="register">Nie jesteś użytkownikiem? Kliknij, aby się zarejestrować...</a>
+            <a href="registerPage">Nie jesteś użytkownikiem? Kliknij, aby się zarejestrować...</a>
         </div>
     </div>
 </body>

@@ -23,14 +23,14 @@
                    onblur="this.placeholder = 'E-mail'">
             <input name="password" type="password" placeholder="Hasło" onfocus="this.placeholder = ''"
                    onblur="this.placeholder = 'Hasło'">
-            <input name="confirm-password" type="password" placeholder="Potwierdź hasło" onfocus="this.placeholder = ''"
+            <input name="confirm_password" type="password" placeholder="Potwierdź hasło" onfocus="this.placeholder = ''"
                    onblur="this.placeholder = 'Potwierdź hasło'">
             <input name="name" type="text" placeholder="Imię" onfocus="this.placeholder = ''"
                    onblur="this.placeholder = 'Imię'">
-            <input name="surname" type="password" placeholder="Nazwisko" onfocus="this.placeholder = ''"
+            <input name="surname" type="text" placeholder="Nazwisko" onfocus="this.placeholder = ''"
                    onblur="this.placeholder = 'Nazwisko'">
-            <label for="birth-date">Data urodzenia</label>
-            <input class="birth-date" name="birth-date" type="date">
+<!--            <label for="birth_date">Data urodzenia</label>-->
+<!--            <input class="birth_date" name="birth_date" type="date">-->
             <div class="messages">
                 <?php
                 if(isset($messages)){
