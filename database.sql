@@ -1,6 +1,7 @@
 create TABLE resources (
                            id_resources serial,
                            resource_name varchar(255) not null,
+                           "date" date not null,
                            constraint PK_id_resources primary key (id_resources)
 );
 

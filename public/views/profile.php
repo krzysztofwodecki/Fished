@@ -20,7 +20,7 @@
             </div>
 
             <div class="add-photo">
-                <form action="addPhoto" method="POST" ENCTYPE="multipart/form-data">
+                <form action="addPhotoOnProfile" method="POST" ENCTYPE="multipart/form-data">
                     <input type="file" name="file" id="upload-button" onchange="this.form.submit()" hidden/>
                     <label for="upload-button">
                         <i class="fas fa-plus"></i>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="return">
-                <a href="mainpage">
+                <a href="main_page">
                     <i class="fas fa-long-arrow-alt-left"></i>
                 </a>
             </div>
@@ -57,11 +57,9 @@
 
             <section class="gallery"> 
                 <section class="gallery-inner">
-                    <img src="public/uploads/photos_on_profile/obraz_2022-01-08_202027.png">
-                    <img src="public/uploads/photos_on_profile/obraz_2022-01-08_202027.png">
-                    <img src="public/uploads/photos_on_profile/obraz_2022-01-08_202027.png">
-                    <img src="public/uploads/photos_on_profile/obraz_2022-01-08_202027.png">
-
+                    <?php foreach($photos as $photo): ?>
+                        <div><img src="/public/uploads/<?=$photo->getName()?>"></div>
+                    <?php endforeach; ?>
                 </section>
             </section>
 

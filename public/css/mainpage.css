@@ -91,6 +91,12 @@ section {
     text-decoration: none;
 }
 
+.competition:hover, .add-join-competition:hover {
+    background-color: #ecbf4a;
+}
+
+
+
 .inner-competition {
     height: calc(100% - 40px);
     width: calc(100% - 40px);

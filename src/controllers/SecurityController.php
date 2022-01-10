@@ -35,7 +35,7 @@ class SecurityController extends AppController {
             setcookie('userEmail', $user->getEmail(), time() + (86400 * 30), "/");
         }
 
-        return $this->render('mainpage');
+        return $this->render('main-page');
     }
 
     public function logout() {

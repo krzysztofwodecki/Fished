@@ -8,12 +8,8 @@ class DefaultController extends AppController {
         $this->render('login');
     }
 
-    public function mainpage() {
-        $this->render('mainpage');
-    }
-
-    public function profile() {
-        $this->render('profile');
+    public function main_page() {
+        $this->render('main-page');
     }
 
     public function competition() {

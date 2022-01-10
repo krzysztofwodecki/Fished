@@ -67,6 +67,8 @@ i {
 
     display: flex;
     overflow: auto;
+
+    white-space: nowrap;
 }
 
 .informations>div{
@@ -83,7 +85,7 @@ i {
     border-radius: 30px;
     border: 1px solid #000000;
     background: #FECA4F 0% 0% repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0 3px 6px #00000029;
 
     overflow: hidden;
 }
@@ -102,10 +104,21 @@ i {
     grid-gap: 30px;
 }
 
-.gallery-inner>img{
-    max-height: 100%;
-    border: 1px solid #000000;
+.gallery-inner>div{
     aspect-ratio: 1/1.5;
+
+    background-color: black;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-inner>div>img {
+    max-height: 100%;
+    max-width: 100%;
+
 }
 
 .achievements-section {

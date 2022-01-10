@@ -1,4 +1,4 @@
-FROM php:7.4.3-fpm-alpine3.11
+FROM php:8.1.1-fpm-alpine3.15
 
 ENV RUN_DEPS \
     zlib \
@@ -28,6 +28,8 @@ RUN apk add --no-cache --virtual .build-deps $BUILD_DEPS \
     && apk del .build-deps
 
 RUN apk add --no-cache --virtual .run-deps $RUN_DEPS
+
+RUN echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 
 # Copy the application code
 COPY . /app

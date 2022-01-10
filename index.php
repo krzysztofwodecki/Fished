@@ -6,7 +6,6 @@ $path = trim($_SERVER['REQUEST_URI'], '/');
 $path = parse_url($path, PHP_URL_PATH);
 
 Routing::get('', 'DefaultController');
-
 Routing::post('login', 'SecurityController');
 
 Routing::get('logout', 'SecurityController');
@@ -14,10 +13,10 @@ Routing::get('logout', 'SecurityController');
 Routing::get('registerPage', 'DefaultController');
 Routing::post('register', 'SecurityController');
 
-Routing::get('mainpage', 'DefaultController');
+Routing::get('main_page', 'DefaultController');
 
 Routing::get('profile', 'ProfileController');
-Routing::post('addPhoto', 'PhotoController');
+Routing::post('addPhotoOnProfile', 'PhotoController');
 
 
 Routing::get('competition', 'DefaultController');

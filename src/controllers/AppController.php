@@ -16,6 +16,11 @@ class AppController {
     }
 
     protected function render(string $template = null, array $variables = []) {
+        if(!isset($_COOKIE['userEmail']) && !in_array($template, ['login', 'register', '']) && $this->isGet()) {
+            $template = 'login';
+            $variables = ['messages' => ['Musisz się zalogować']];
+        }
+
         $templatePath = 'public/views/'.$template.'.php';
         $output = 'File not found';
 
@@ -29,4 +34,18 @@ class AppController {
 
         print $output; 
     }
+
+    protected function isLogged(): bool {
+        if(isset($_COOKIE['userEmail'])) {
+            return true;
+        }
+
+        $template = 'login';
+        $variables = ['messages' => ['Musisz się zalogować']];
+
+        $this->render($template, $variables);
+
+        return false;
+    }
+
 }

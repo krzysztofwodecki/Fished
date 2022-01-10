@@ -10,7 +10,7 @@
     <div class="base-container">
         <nav>
             <div class ="return">
-                <a href="mainpage">
+                <a href="main_page">
                     <i class="fas fa-long-arrow-alt-left"></i>
                 </a>
             </div>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="return-mobile">
-                    <a href="mainpage">
+                    <a href="main_page">
                         <i class="fas fa-long-arrow-alt-left"></i>
                     </a>
                 </div>
