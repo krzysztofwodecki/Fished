@@ -17,6 +17,7 @@ Routing::get('main_page', 'DefaultController');
 
 Routing::get('profile', 'ProfileController');
 Routing::post('addPhotoOnProfile', 'PhotoController');
+Routing::get('deletePhotoOnProfile', 'PhotoController');
 
 
 Routing::get('competition', 'DefaultController');

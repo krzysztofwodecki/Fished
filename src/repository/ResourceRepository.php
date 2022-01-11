@@ -90,4 +90,15 @@ class ResourceRepository extends Repository {
     private function addNewsAttachment($res) {
         //TODO
     }
+
+    public function deleteResource($name) {
+        $stmt = $this->database->connect()->prepare('
+            DELETE from resources
+            WHERE resource_name = :resource_name
+        ');
+
+        $stmt->bindParam(':resource_name', $name, PDO::PARAM_STR);
+
+        return $stmt->execute();
+    }
 }

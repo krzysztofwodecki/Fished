@@ -10,12 +10,14 @@ class PhotoController extends AppController {
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
 
-    private $message = [];
+//    private $message = [];
     private $resourceRepository;
+    private $profileController;
 
     public function __construct() {
         parent::__construct();
         $this->resourceRepository = new ResourceRepository();
+        $this->profileController = new ProfileController();
     }
 
     public function addPhotoOnProfile(){
@@ -51,8 +53,9 @@ class PhotoController extends AppController {
             $this->resourceRepository->addResource($photo, $dest);
         }
 
-        $profileController = new ProfileController();
-        $profileController->profile();
+        //TODO returns to blank profile
+
+        $this->profileController->profile();
     }
 
     private function validate(array $file):bool {
@@ -67,5 +70,21 @@ class PhotoController extends AppController {
         }
 
         return true;
+    }
+
+    public function deletePhotoOnProfile() {
+        if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null) {
+            if($this->deletePhoto($_GET['selectedPhoto'])){
+                unlink(dirname(__DIR__).self::UPLOAD_DIRECTORY.$_GET['selectedPhoto']);
+            }
+        }
+
+        //TODO returns to blank profile
+
+        $this->profileController->profile();
+    }
+
+    private function deletePhoto($photoName) {
+        return $this->resourceRepository->deleteResource($photoName);
     }
 }

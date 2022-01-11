@@ -58,7 +58,9 @@
             <section class="gallery"> 
                 <section class="gallery-inner">
                     <?php foreach($photos as $photo): ?>
-                        <div><img src="/public/uploads/<?=$photo->getName()?>"></div>
+                    <a href="?selectedPhoto=<?=$photo->getName()?>">
+                        <img src="/public/uploads/<?=$photo->getName()?>" alt="<?=$photo->getName()?>">
+                    </a>
                     <?php endforeach; ?>
                 </section>
             </section>
@@ -72,6 +74,32 @@
                     </div>
                 </section>
             </section>
+
+<!--            --><?php //if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null): ?>
+<!--                <div class="image-overlay">-->
+<!--                    <img src="/public/uploads/--><?//=$_GET['selectedPhoto']?><!--"-->
+<!--                         alt="--><?//=$_GET['selectedPhoto']?><!--">-->
+<!--                </div>-->
+<!--            --><?php //endif; ?>
+
+            <?php if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null): ?>
+                <div class="image-overlay">
+                    <div class="back-profile">
+                        <a href="profile">
+                            <i class="fas fa-long-arrow-alt-left"></i>
+                        </a>
+                    </div>
+
+                    <div class="delete-photo">
+                        <a href="deletePhotoOnProfile?selectedPhoto=<?=$_GET['selectedPhoto']?>">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
+
+                    <img src="/public/uploads/<?=$_GET['selectedPhoto']?>"
+                         alt="<?=$_GET['selectedPhoto']?>">
+                </div>
+            <?php endif; ?>
 
             <div class="mobile-icons">
                 <a href="achievements_mobile">
