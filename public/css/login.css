@@ -46,13 +46,13 @@ input {
     text-align: center;
 }
 
-button {
+button, .right-form>a {
     background: #FECA4F 0% 0% no-repeat padding-box;
     box-shadow: 0px 2px 2px #00000029;
     border-radius: 20px;
     width: 30%;
     border: none;
-    font: normal normal thin 14px/14px Arial;
+    font: normal normal normal 14px/14px Arial;
     color: #116C73;
     margin: 1em;
     line-height: 2.5em;

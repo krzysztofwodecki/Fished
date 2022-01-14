@@ -64,7 +64,7 @@ class CompetitionRepository extends Repository {
             $string = str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 
             for($i = 0; $i < 6; $i++) {
-                $code .= $string{mt_rand(0, strlen($string) - 1)};
+                $code .= $string[mt_rand(0, strlen($string) - 1)];
             }
         } while (!$this->codeUniqueness($code));
 

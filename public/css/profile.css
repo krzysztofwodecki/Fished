@@ -191,7 +191,6 @@ i {
 }
 
 .back-profile, .delete-photo {
-    /*display: none;*/
     position: absolute;
     top: 10px;
 }
@@ -205,9 +204,6 @@ i {
 }
 
 .image-overlay>img {
-    /*height: 100%;*/
-    /*width: 100%;*/
-
     max-height: 90%;
     max-width: 90%;
 }

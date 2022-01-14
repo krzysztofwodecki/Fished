@@ -45,7 +45,7 @@ class ResourceRepository extends Repository {
 
         $stmt->execute([
             $res->getName(),
-            date("d.m.Y"),
+            date("Y.m.d"),
             $_COOKIE['userEmail']
         ]);
     }

@@ -75,13 +75,6 @@
                 </section>
             </section>
 
-<!--            --><?php //if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null): ?>
-<!--                <div class="image-overlay">-->
-<!--                    <img src="/public/uploads/--><?//=$_GET['selectedPhoto']?><!--"-->
-<!--                         alt="--><?//=$_GET['selectedPhoto']?><!--">-->
-<!--                </div>-->
-<!--            --><?php //endif; ?>
-
             <?php if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null): ?>
                 <div class="image-overlay">
                     <div class="back-profile">

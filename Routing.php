@@ -4,6 +4,8 @@ require_once 'src/controllers/DefaultController.php';
 require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/PhotoController.php';
 require_once 'src/controllers/ProfileController.php';
+require_once 'src/controllers/CompetitionController.php';
+require_once 'src/controllers/FisheryController.php';
 
 class Routing {
     public static $routes;

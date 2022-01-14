@@ -14,6 +14,8 @@ Routing::get('registerPage', 'DefaultController');
 Routing::post('register', 'SecurityController');
 
 Routing::get('main_page', 'DefaultController');
+Routing::post('add_competition', 'CompetitionController');
+Routing::post('add_fishery', 'FisheryController');
 
 Routing::get('profile', 'ProfileController');
 Routing::post('addPhotoOnProfile', 'PhotoController');

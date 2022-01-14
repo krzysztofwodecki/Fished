@@ -6,7 +6,9 @@ require_once __DIR__.'/../repository/CompetitionRepository.php';
 
 class CompetitionController extends AppController {
 
-    public function addCompetition() {
-        //TODO
+    public function add_competition() {
+        return $this->render('main_page');
     }
+
+    // TODO
 }
