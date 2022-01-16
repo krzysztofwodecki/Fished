@@ -6,7 +6,6 @@ require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController {
     private $userRepository;
-    private $messages = [];
 
     public function __construct() {
         parent::__construct();
@@ -53,11 +52,10 @@ class SecurityController extends AppController {
 
         $email = $_POST["email"];
         $password = $_POST["password"];
-        $confirm_password = $_POST["confirm_password"];
         $name = $_POST["name"];
         $surname = $_POST["surname"];
 
-        if($this->validateRegister($email, $password, $confirm_password, $name, $surname)) {
+        if($this->userRepository->getUser($email) === null) {
             $password = password_hash($password, PASSWORD_DEFAULT);
 
             $user = new User($email, $password, $name, $surname);
@@ -66,46 +64,6 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages' => ['Rejestracja przebiegła poprawnie']]);
         }
 
-        return $this->render('register', ['messages' => $this->messages]);
+        return $this->render('register', ['messages' => ['Użytkownik o podanym emailu już istnieje']]);
     }
-
-    private function validateRegister($email, $password, $confirm_password, $name, $surname): bool {
-        if($email == null) {
-            $this->messages = ['Nieprawidłowy email'];
-            return false;
-        }
-
-        if($this->userRepository->getUser($email) !== null) {
-            $this->messages = ['Użytkownik o podanym emailu już istnieje'];
-            return false;
-        }
-
-        if($password == null) {
-            $this->messages = ['Brak hasła'];
-            return false;
-        }
-
-        if($confirm_password == null) {
-            $this->messages = ['Brak potwierdzenia hasła'];
-            return false;
-        }
-
-        if($password !== $confirm_password) {
-            $this->messages = ['Hasła nie są zgodne'];
-            return false;
-        }
-
-        if($name == null) {
-            $this->messages = ['Uzupełnij imię'];
-            return false;
-        }
-
-        if($surname == null) {
-            $this->messages = ['Uzupełnij nazwisko'];
-            return false;
-        }
-
-        return true;
-    }
-
 }

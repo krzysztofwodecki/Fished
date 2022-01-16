@@ -39,7 +39,7 @@ class UserRepository extends Repository {
             $user->getName(),
             $user->getSurname(),
             $user->getPassword(),
-            date("d.m.Y")
+            date("Y.m.d")
         ]);
     }
 
