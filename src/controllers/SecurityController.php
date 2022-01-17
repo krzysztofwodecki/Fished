@@ -3,13 +3,17 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
+require_once __DIR__.'/../repository/CompetitionRepository.php';
 
 class SecurityController extends AppController {
     private $userRepository;
+    private $competitionRepository;
 
     public function __construct() {
+
         parent::__construct();
         $this->userRepository = new UserRepository();
+        $this->competitionRepository = new CompetitionRepository();
     }
 
     public function login() {
@@ -34,7 +38,9 @@ class SecurityController extends AppController {
             setcookie('userEmail', $user->getEmail(), time() + (86400 * 30), "/");
         }
 
-        return $this->render('main_page');
+        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
+        return $this->render('main_page', $messages);
     }
 
     public function logout() {

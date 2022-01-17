@@ -6,7 +6,6 @@ $path = trim($_SERVER['REQUEST_URI'], '/');
 $path = parse_url($path, PHP_URL_PATH);
 
 Routing::get('', 'DefaultController');
-Routing::post('login', 'SecurityController');
 
 Routing::get('logout', 'SecurityController');
 
@@ -14,6 +13,7 @@ Routing::get('registerPage', 'DefaultController');
 Routing::post('register', 'SecurityController');
 
 Routing::get('main_page', 'CompetitionController');
+Routing::post('login', 'SecurityController');
 Routing::get('getFisheries', 'MapController');
 
 Routing::post('add_competition', 'CompetitionController');

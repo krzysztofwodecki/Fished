@@ -2,21 +2,26 @@
 
 require_once 'AppController.php';
 require_once __DIR__ . '/../repository/MapRepository.php';
+require_once __DIR__ . '/../repository/CompetitionRepository.php';
 require_once __DIR__ . '/../models/Fishery.php';
 
 class MapController extends AppController {
     private $mapRepository;
+    private $competitionRepository;
 
     public function __construct()
     {
         parent::__construct();
         $this->mapRepository = new MapRepository();
+        $this->competitionRepository = new CompetitionRepository();
 
     }
 
     public function add_fishery() {
+        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
         if(!$this->isPost()) {
-            return $this->render('main_page');
+            return $this->render('main_page', $messages);
         }
 
         $name = $_POST["name"];
@@ -30,7 +35,8 @@ class MapController extends AppController {
 
         $this->mapRepository->addFishery($fishery);
 
-        return $this->render('main_page');
+
+        return $this->render('main_page', $messages);
     }
 
     public function getFisheries() {

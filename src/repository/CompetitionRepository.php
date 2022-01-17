@@ -82,4 +82,19 @@ class CompetitionRepository extends Repository {
             return true;
         } else return false;
     }
+
+    public function addAttendee($code) {
+        $stmt = $this->database->connect()->prepare('
+            INSERT INTO attendance(id_user, id_competition)
+            VALUES ((SELECT id_user_account FROM user_account WHERE email = ?),
+                    (SELECT id_competitions FROM competitions WHERE code = ?))
+        ');
+
+        $stmt->execute([
+            $_COOKIE['userEmail'],
+            $code
+        ]);
+
+        //TODO author of competition
+    }
 }

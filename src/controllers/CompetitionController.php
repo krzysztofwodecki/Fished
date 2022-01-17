@@ -8,13 +8,17 @@ class CompetitionController extends AppController {
     private $competitionRepository;
 
     public function __construct() {
+
         parent::__construct();
         $this->competitionRepository = new CompetitionRepository();
+        $this->userRepository = new UserRepository();
     }
 
     public function add_competition() {
+        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
         if(!$this->isPost()) {
-            return $this->render('main-page');
+            return $this->render('main_page', $messages);
         }
 
         $name = $_POST['name'];
@@ -33,8 +37,11 @@ class CompetitionController extends AppController {
         $this->createCode($competition);
 
         $this->competitionRepository->addCompetition($competition);
+        $this->competitionRepository->addAttendee($competition->getCode());
 
-        return $this->render('main_page');
+        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
+        return $this->render('main_page', $messages);
     }
 
     public function main_page() {

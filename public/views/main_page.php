@@ -46,7 +46,7 @@
                 <a class="competition" href="competition?id=<?= $competition->getName() ?>">
                     <div class="inner-competition">
                         <h2><?= $competition->getName() ?></h2>
-                        <p><?= $competition->getDate() ?></p>
+                        <p><?= date("d.m.Y", strtotime($competition->getDate()))."r."; ?></p>
                         <p><?= $competition->getFishery()->getTown() ?></p>
                     </div>
                 </a>

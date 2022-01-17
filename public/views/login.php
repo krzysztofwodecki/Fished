@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/login.css"> 
     <link rel="icon" href="public/img/icon.svg">
     <title>Fished - strona logowania</title>
+
 </head>
 
 <body>
@@ -14,7 +15,7 @@
         </div>
 
         <div class="login-container">
-            <form class="login" action="login" method="POST">
+            <form class="login" action="main_page" method="POST">
                 <div class="messages">
                     <?php
                     if(isset($messages)){
