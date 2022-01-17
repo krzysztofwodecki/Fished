@@ -62,7 +62,7 @@ input {
     text-align: center;
 }
 
-button {
+.inner-buttons {
     background: #116C73 0% 0% no-repeat padding-box;
     box-shadow: 0px 2px 2px #00000029;
     border-radius: 20px;
@@ -82,7 +82,7 @@ button {
     gap: 20px;
 }
 
-.fisheries {
+.right-form>div {
     width: 50vw;
     height: 60vh;
 
@@ -90,7 +90,21 @@ button {
     border: solid 1px black;
 
     background-color: #548668;
+    overflow: hidden;
 }
+
+.marker {
+    background-image: url('/public/img/pin.png');
+    background-size: cover;
+    height: 30px;
+    aspect-ratio: 0.73448/1;
+    cursor: pointer;
+}
+
+.mapboxgl-popup {
+    max-width: 300px;
+}
+
 
 button:hover {
     background: #0d4c50 0% 0% no-repeat padding-box;

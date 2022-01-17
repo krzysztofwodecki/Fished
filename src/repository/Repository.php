@@ -7,8 +7,7 @@ class Repository {
 
     //TODO Singleton
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->database = new Database();
     }
 }

@@ -24,6 +24,5 @@ class ProfileController extends AppController {
 
             return $this->render('profile', $messages);
         }
-
     }
 }

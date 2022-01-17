@@ -13,9 +13,11 @@ Routing::get('logout', 'SecurityController');
 Routing::get('registerPage', 'DefaultController');
 Routing::post('register', 'SecurityController');
 
-Routing::get('main_page', 'DefaultController');
+Routing::get('main_page', 'CompetitionController');
+Routing::get('getFisheries', 'MapController');
+
 Routing::post('add_competition', 'CompetitionController');
-Routing::post('add_fishery', 'FisheryController');
+Routing::post('add_fishery', 'MapController');
 
 Routing::get('profile', 'ProfileController');
 Routing::post('addPhotoOnProfile', 'PhotoController');

@@ -5,43 +5,55 @@ require_once __DIR__.'/../models/Competition.php';
 
 class CompetitionRepository extends Repository {
 
-    public function getCompetition(int $id): ?Competition {
-
+    public function getCompetitions() {
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.competitions WHERE id_competitions = :id
+            SELECT *, c.name as "comp_name", f.name as "fishery_name" FROM public.competitions c
+            FULL JOIN attendance a ON a.id_competition = c.id_competitions
+            FULL JOIN user_account ua ON ua.id_user_account = a.id_user
+            FULL JOIN fisheries f on c.id_place = f.id_fisheries
+            WHERE ua.email = :email
         ');
 
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':email', $_COOKIE['userEmail']);
         $stmt->execute();
 
-        $competition = $stmt->fetch(PDO::FETCH_ASSOC);
+        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $competitions = [];
 
-        if($competition == false) {
-            return null;
+        if($array != false) {
+            foreach ($array as $element) {
+                if($element['comp_name'] !== null) {
+                    $fishery = new Fishery (
+                        $element['fishery_name'],
+                        $element['address'],
+                        $element['town'],
+                        $element['postal'],
+                        $element['latitude'],
+                        $element['longitude']);
+
+                    $competition = new Competition (
+                        $element['comp_name'],
+                        $element['date'],
+                        $element['gathering_time'],
+                        $element['start_time'],
+                        $element['sites'],
+                        $element['id_place']);
+
+                    $competition->setFishery($fishery);
+
+                    array_push($competitions, $competition);
+                }
+            }
         }
-
-        return new Competition (
-            $competition['name'],
-            $competition['date'],
-            $competition['gathering_time'],
-            $competition['start_time'],
-            $competition['on_boat'],
-            $competition['sites'],
-            $competition['id_place'],
-            $competition['remaining_sites'],
-            $competition['code']
-            //TODO delete remaining sites, since when it will be calculated on spot
-        );
+        return $competitions;
     }
 
-
     public function addCompetition(Competition $competition): void {
-        $this->createCode($competition);
 
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO competitions (name, date, gathering_time, start_time, 
-                                      code, on_boat, sites, id_place, remaining_sites)
-            VALUES (?,?,?,?,?)
+            INSERT INTO competitions (name, date, gathering_time, start_time,
+                                      code, id_place, sites, remaining_sites)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ');
 
         $stmt->execute([
@@ -50,28 +62,13 @@ class CompetitionRepository extends Repository {
             $competition->getGatheringTime(),
             $competition->getStartTime(),
             $competition->getCode(),
-            $competition->getOnBoat(),
-            $competition->getSites(),
             $competition->getIdPlace(),
+            $competition->getSites(),
             $competition->getRemainingSites()
         ]);
     }
 
-    private function createCode(Competition $competition): void {
-        $code = '';
-
-        do {
-            $string = str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-
-            for($i = 0; $i < 6; $i++) {
-                $code .= $string[mt_rand(0, strlen($string) - 1)];
-            }
-        } while (!$this->codeUniqueness($code));
-
-        $competition->setCode($code);
-    }
-
-    private function codeUniqueness($code): bool {
+    public function codeUnique($code): bool {
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM public.competitions WHERE code = :code
         ');
@@ -82,7 +79,7 @@ class CompetitionRepository extends Repository {
         $competition = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if($competition == false) {
-            return false;
-        } else return true;
+            return true;
+        } else return false;
     }
 }

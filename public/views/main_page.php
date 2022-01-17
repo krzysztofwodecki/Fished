@@ -4,6 +4,11 @@
     <link rel="stylesheet" type="text/css" href="public/css/mainpage_overlay.css">
     <link rel="icon" href="public/img/icon.svg">
     <script src="https://kit.fontawesome.com/8ac407c03d.js" crossorigin="anonymous"></script>
+
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <script src="/public/js/map.js" defer></script>
+
     <title>Fished - strona główna</title>
 </head>
 
@@ -37,13 +42,15 @@
 
         <main>
             <section>
-                <a class="competition" href="competition">
+                <?php foreach ($competitions as $competition): ?>
+                <a class="competition" href="competition?id=<?= $competition->getName() ?>">
                     <div class="inner-competition">
-                        <h2>Zawody 1</h2>
-                        <p>21.11.2021r.</p>
-                        <p>Niepołomice</p>
+                        <h2><?= $competition->getName() ?></h2>
+                        <p><?= $competition->getDate() ?></p>
+                        <p><?= $competition->getFishery()->getTown() ?></p>
                     </div>
                 </a>
+                <?php endforeach; ?>
             </section>
         </main>
 
@@ -69,29 +76,29 @@
                     <label for="date">Data zawodów:</label>
                     <input name="date" type="date">
 
-                    <label for="gathering-time">Czas zbiórki:</label>
-                    <input name="gathering-time" type="time">
+                    <label for="gathering_time">Czas zbiórki:</label>
+                    <input name="gathering_time" type="time">
 
-                    <label for="start-time">Czas startu:</label>
-                    <input name="start-time" type="time">
+                    <label for="start_time">Czas startu:</label>
+                    <input name="start_time" type="time">
 
-                    <label for="end-time">Czas zakończenia:</label>
-                    <input name="end-time" type="time">
+                    <label for="end_time">Czas zakończenia:</label>
+                    <input name="end_time" type="time">
 
                     <label for="sites">Liczba miejsc na zawodach:</label>
                     <input name="sites" type="number" placeholder="Liczba miejsc">
 
-                    <button type="submit">Dodaj zawody</button>
+                    <input name="fishery" type="text" hidden>
+
+                    <button class="inner-buttons" type="submit">Dodaj zawody</button>
                 </div>
 
                 <div class="right-form">
                     <a href="?action=addFishery">
-                        <button type="button">Dodaj łowisko</button>
+                        <button class="inner-buttons" type="button">Dodaj łowisko</button>
                     </a>
 
-                    <div class="fisheries">
-                        <!-- TODO map -->
-                    </div>
+                    <div id="map"></div>
                 </div>
             </form>
             <?php endif; ?>
@@ -117,14 +124,14 @@
                     <input name="postal" type="text" placeholder='Kod pocztowy' onfocus="this.placeholder = ''"
                            onblur="this.placeholder = 'Kod pocztowy'">
 
-                    <button type="submit">Dodaj łowisko</button>
-                    <!-- TODO mapa -->
+                    <input name="latitude" type="text" hidden>
+                    <input name="longitude" type="text" hidden>
+
+                    <button class="inner-buttons" type="submit">Dodaj łowisko</button>
                 </div>
 
                 <div class="right-form">
-                    <div class="fisheries">
-                        <!-- TODO map -->
-                    </div>
+                    <div id="map"></div>
                 </div>
             </form>
             <?php endif; ?>

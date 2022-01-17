@@ -58,7 +58,7 @@ class ResourceRepository extends Repository {
             WHERE email = :email
         ');
 
-        $stmt->bindParam(':email', $_COOKIE['userEmail'], PDO::PARAM_STR);
+        $stmt->bindParam(':email', $_COOKIE['userEmail']);
         $stmt->execute();
 
         $res_array = $stmt->fetchAll(PDO::FETCH_ASSOC);

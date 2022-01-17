@@ -5,7 +5,7 @@ require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/PhotoController.php';
 require_once 'src/controllers/ProfileController.php';
 require_once 'src/controllers/CompetitionController.php';
-require_once 'src/controllers/FisheryController.php';
+require_once 'src/controllers/MapController.php';
 
 class Routing {
     public static $routes;
