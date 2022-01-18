@@ -15,7 +15,7 @@
         </div>
 
         <div class="login-container">
-            <form class="login" action="main_page" method="POST">
+            <form class="login" action="login" method="POST">
                 <div class="messages">
                     <?php
                     if(isset($messages)){

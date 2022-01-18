@@ -43,4 +43,24 @@ class UserRepository extends Repository {
         ]);
     }
 
+    public function revoked($email): bool {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM public.user_account ua
+            INNER JOIN public.credentials c ON ua.id_user_account = c.id_user
+            INNER JOIN public.revocations r ON r.id_credential = c.id_credentials
+            WHERE email = :email
+        ');
+
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $revocation = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($revocation == false) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

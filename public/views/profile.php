@@ -4,6 +4,8 @@
     <link rel="icon" href="public/img/icon.svg">
     <script src="https://kit.fontawesome.com/8ac407c03d.js" crossorigin="anonymous"></script>
     <title>Fished - profil</title>
+
+    <script src="/public/js/deletePhoto.js" defer></script>
 </head>
 
 <body>

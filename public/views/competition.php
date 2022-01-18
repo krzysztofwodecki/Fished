@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/competition.css"> 
+    <link rel="stylesheet" type="text/css" href="public/css/competition.css">
+    <link rel="stylesheet" type="text/css" href="public/css/map_essentials.css">
     <link rel="icon" href="public/img/icon.svg">
     <script src="https://kit.fontawesome.com/8ac407c03d.js" crossorigin="anonymous"></script>
-    <title>Fished - zawody</title>
+    <title>Fished - <?= $competition->getName(); ?></title>
+
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <script src="/public/js/map.js" defer></script>
 </head>
 
 <body>
@@ -18,18 +23,27 @@
 
         <main>
             <div class="informations">
-                <h1>Zawody</h1>
-                <h3>21.11.2021r.</h3>
-                <h3>Niepołomice</h3>
+                <h1><?= $competition->getName(); ?></h1>
+                <h3><?= date("d.m.Y", strtotime($competition->getDate()))."r."; ?></h3>
+                <h3><?= $competition->getFishery()->getTown(); ?></h3>
                 <div>
                     <div>
-                        <p>zbiórka: 6:30</p>
-                        <p>start: 8:00</p>
+                        <p>zbiórka: <?= date("H:i", strtotime($competition->getStartTime())); ?></p>
+                        <p>start: <?= date("H:i", strtotime($competition->getGatheringTime())); ?></p>
                     </div>
                     <div>
                         <p>sektor: B</p>
                         <p>stanowisko: 15</p>
                     </div>
+                </div>
+
+                <div class="fishery-info" style="display: none">
+                    <div id="name"><?= $competition->getFishery()->getName(); ?></div>
+                    <div id="address"><?= $competition->getFishery()->getAddress(); ?></div>
+                    <div id="town"><?= $competition->getFishery()->getTown(); ?></div>
+                    <div id="postal"><?= $competition->getFishery()->getPostal(); ?></div>
+                    <div id="longitude"><?= $competition->getFishery()->getLongitude(); ?></div>
+                    <div id="latitude"><?= $competition->getFishery()->getLatitude(); ?></div>
                 </div>
             </div>
 
@@ -46,9 +60,7 @@
                     </div>
                 </div>
     
-                <map class="map">
-                    <div></div>
-                </map>
+                <div class="map" id="map"></div>
     
                 <div class="icons">
                     <div class="score-list">

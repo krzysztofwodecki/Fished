@@ -5,6 +5,7 @@ class Competition {
     private $date;
     private $gathering_time;
     private $start_time;
+    private $end_time;
     private $code;
     private $sites;
     private $id_place;
@@ -14,12 +15,13 @@ class Competition {
     // TODO end_time
 
     public function __construct($name, $date, $gathering_time, $start_time,
-                                $sites, $id_place) {
+                                $end_time, $sites, $id_place) {
 
         $this->name = $name;
         $this->date = $date;
         $this->gathering_time = $gathering_time;
         $this->start_time = $start_time;
+        $this->end_time = $end_time;
         $this->sites = $sites;
         $this->id_place = $id_place;
     }
@@ -62,6 +64,16 @@ class Competition {
     public function setStartTime($start_time): void
     {
         $this->start_time = $start_time;
+    }
+
+    public function getEndTime()
+    {
+        return $this->end_time;
+    }
+
+    public function setEndTime($end_time): void
+    {
+        $this->end_time = $end_time;
     }
 
     public function getCode()

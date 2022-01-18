@@ -14,6 +14,27 @@ class CompetitionController extends AppController {
         $this->userRepository = new UserRepository();
     }
 
+    public function competition() {
+        if(!$this->isGet()) {
+            $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
+            if(!$this->isPost()) {
+                return $this->render('main_page', $messages);
+            }
+        }
+
+        // TODO validate user
+
+        $code = str_replace("id=", "", $_SERVER['QUERY_STRING']);
+        $code = base64_decode($code);
+        $code = str_replace(COMP_HASH, "", $code);
+        $code = base64_decode($code);
+
+        $messages = ['competition' => $this->competitionRepository->getCompetition($code)];
+
+        return $this->render('competition', $messages);
+    }
+
     public function add_competition() {
         $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
 
@@ -31,7 +52,8 @@ class CompetitionController extends AppController {
 
         //TODO competition end_time
 
-        $competition = new Competition($name, $date, $gathering_time, $start_time, $sites, $id_place);
+        $competition = new Competition($name, $date, $gathering_time, $start_time,
+            $end_time, $sites, $id_place);
 
         $competition->setRemainingSites(intval($sites) - 1);
         $this->createCode($competition);

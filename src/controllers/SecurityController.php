@@ -34,11 +34,17 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages' => ['Nieprawidłowe hasło']]);
         }
 
+        if($this->userRepository->revoked($email)) {
+            return $this->render('login', ['messages' => ['Dostęp zablokowany']]);
+        }
+
         if(!isset($_COOKIE['userEmail'])) {
             setcookie('userEmail', $user->getEmail(), time() + (86400 * 30), "/");
         }
 
-        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+        //TODO session start
+
+        $messages = ['competitions' => $this->competitionRepository->getCompetitions($user)];
 
         return $this->render('main_page', $messages);
     }

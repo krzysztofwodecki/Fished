@@ -24,7 +24,8 @@ Routing::post('addPhotoOnProfile', 'PhotoController');
 Routing::get('deletePhotoOnProfile', 'PhotoController');
 
 
-Routing::get('competition', 'DefaultController');
+Routing::get('competition', 'CompetitionController');
+
 Routing::get('results', 'DefaultController');   
 Routing::get('attendee_list', 'DefaultController');
 Routing::get('competition_photos', 'DefaultController');

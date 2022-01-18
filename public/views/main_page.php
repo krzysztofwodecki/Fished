@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/mainpage.css">
     <link rel="stylesheet" type="text/css" href="public/css/mainpage_overlay.css">
+    <link rel="stylesheet" type="text/css" href="public/css/map_essentials.css">
     <link rel="icon" href="public/img/icon.svg">
     <script src="https://kit.fontawesome.com/8ac407c03d.js" crossorigin="anonymous"></script>
 
@@ -43,7 +44,7 @@
         <main>
             <section>
                 <?php foreach ($competitions as $competition): ?>
-                <a class="competition" href="competition?id=<?= $competition->getName() ?>">
+                <a class="competition" href="competition?id=<?= base64_encode(COMP_HASH.base64_encode($competition->getCode())); ?>">
                     <div class="inner-competition">
                         <h2><?= $competition->getName() ?></h2>
                         <p><?= date("d.m.Y", strtotime($competition->getDate()))."r."; ?></p>
