@@ -44,7 +44,13 @@
         <main>
             <section>
                 <?php foreach ($competitions as $competition): ?>
-                <a class="competition" href="competition?id=<?= base64_encode(COMP_HASH.base64_encode($competition->getCode())); ?>">
+                <a class="competition"
+                   onclick="<?php
+                   $code_once_coded = base64_encode($competition->getCode());
+                   $id = base64_encode($code_once_coded).COMP_HASH.$code_once_coded;
+                   $id = base64_encode($id);
+                   ?>"
+                   href="competition?id=<?= $id; ?>">
                     <div class="inner-competition">
                         <h2><?= $competition->getName() ?></h2>
                         <p><?= date("d.m.Y", strtotime($competition->getDate()))."r."; ?></p>

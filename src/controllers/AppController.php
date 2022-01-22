@@ -35,17 +35,24 @@ class AppController {
         print $output; 
     }
 
-    protected function isLogged(): bool {
-        if(isset($_COOKIE['userEmail'])) {
-            return true;
+    protected function isLogged() {
+        if(!isset($_COOKIE['userEmail'])) {
+            $template = 'login';
+            $variables = ['messages' => ['Musisz się zalogować']];
+
+            return $this->render($template, $variables);
         }
 
-        $template = 'login';
-        $variables = ['messages' => ['Musisz się zalogować']];
-
-        $this->render($template, $variables);
-
-        return false;
+        return true;
     }
 
+    protected function decodeCompetitionID() {
+        $coded = str_replace("id=", "", $_SERVER['QUERY_STRING']);
+
+        $code = base64_decode($coded);
+        $code = str_replace(COMP_HASH, "", $code);
+        $code = str_split($code, strlen($code)/2 + 2);
+        $code = base64_decode($code[0]);
+        return array($coded, base64_decode($code));
+    }
 }

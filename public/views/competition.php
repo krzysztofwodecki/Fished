@@ -17,6 +17,7 @@
             <div class ="return">
                 <a href="main_page">
                     <i class="fas fa-long-arrow-alt-left"></i>
+<!--                     TODO working cookie-->
                 </a>
             </div>
         </nav>
@@ -64,7 +65,7 @@
     
                 <div class="icons">
                     <div class="score-list">
-                        <a href="results">
+                        <a href="results?id=<?= $id ?>">
                             <i class="fas fa-trophy"></i>
                         </a>
                     </div>

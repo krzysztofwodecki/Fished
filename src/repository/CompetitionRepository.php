@@ -12,8 +12,10 @@ class CompetitionRepository extends Repository {
             FULL JOIN attendance a ON a.id_competition = c.id_competitions
             FULL JOIN user_account ua ON ua.id_user_account = a.id_user
             FULL JOIN fisheries f on c.id_place = f.id_fisheries
-            WHERE ua.email = :email
+            WHERE ua.email = :email ORDER BY c.date;
         ');
+
+        //TODO make it a sql view
 
         if($user === null) {
             $stmt->bindParam(':email', $_COOKIE['userEmail']);

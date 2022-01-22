@@ -11,7 +11,6 @@ class CompetitionController extends AppController {
 
         parent::__construct();
         $this->competitionRepository = new CompetitionRepository();
-        $this->userRepository = new UserRepository();
     }
 
     public function competition() {
@@ -25,12 +24,9 @@ class CompetitionController extends AppController {
 
         // TODO validate user
 
-        $code = str_replace("id=", "", $_SERVER['QUERY_STRING']);
-        $code = base64_decode($code);
-        $code = str_replace(COMP_HASH, "", $code);
-        $code = base64_decode($code);
+        list($coded, $code) = $this->decodeCompetitionID();
 
-        $messages = ['competition' => $this->competitionRepository->getCompetition($code)];
+        $messages = ['id' => $coded, 'competition' => $this->competitionRepository->getCompetition($code)];
 
         return $this->render('competition', $messages);
     }
@@ -67,11 +63,12 @@ class CompetitionController extends AppController {
     }
 
     public function main_page() {
-        if($this->isLogged()) {
-            $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+        $this->isLogged();
 
-            return $this->render('main_page', $messages);
-        }
+        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
+        return $this->render('main_page', $messages);
+
     }
 
     private function createCode(Competition $competition): void {

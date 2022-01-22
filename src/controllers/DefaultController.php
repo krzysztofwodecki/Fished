@@ -16,9 +16,6 @@ class DefaultController extends AppController {
         $this->render('competition');
     }
 
-    public function results() {
-        $this->render('results');
-    }
 
     public function attendee_list() {
         $this->render('attendee-list');

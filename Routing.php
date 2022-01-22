@@ -6,6 +6,7 @@ require_once 'src/controllers/PhotoController.php';
 require_once 'src/controllers/ProfileController.php';
 require_once 'src/controllers/CompetitionController.php';
 require_once 'src/controllers/MapController.php';
+require_once 'src/controllers/ScoreController.php';
 
 class Routing {
     public static $routes;

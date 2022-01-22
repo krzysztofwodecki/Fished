@@ -10,7 +10,7 @@
     <div class="base-container">
         <nav>
             <div class="return">
-                <a href="competition">
+                <a href="competition?id=<?= $id ?>   ">
                     <i class="fas fa-long-arrow-alt-left"></i>
                 </a>
             </div>
@@ -18,11 +18,13 @@
 
         <main>
             <div class="result-list">
+                <?php foreach ($scores as $score): ?>
                 <div>
-                    <p>1.</p>
-                    <p>Jan Kowalski</p>
-                    <p>13 punktów</p>
+                    <p><?=array_search($score, $scores) + 1;?>.</p>
+                    <p><?=$score->getName()." ".$score->getSurname()?></p>
+                    <p><?=$score->getScore()?> punktów</p>
                 </div>
+                <?php endforeach; ?>
             </div>
         </main>
     </div>

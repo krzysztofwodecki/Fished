@@ -11,18 +11,18 @@ class ProfileController extends AppController {
     }
 
     public function profile(array $messages = []) {
-        if($this->isLogged()) {
-            $user = $this->userRepository->getUser($_COOKIE['userEmail']);
+        $this->isLogged();
 
-            $messages = array_merge($messages, [
-                'name' => $user->getName(),
-                'surname' => $user->getSurname(),
-                'phone_number' => $user->getPhoneNumber(),
-                'birth_date' => $user->getBirthDate(),
-                'email' => $user->getEmail(),
-                'photos' => $this->resourceRepository->getResource(ResourceDestination::ON_PROFILE)]);
+        $user = $this->userRepository->getUser($_COOKIE['userEmail']);
 
-            return $this->render('profile', $messages);
-        }
+        $messages = array_merge($messages, [
+            'name' => $user->getName(),
+            'surname' => $user->getSurname(),
+            'phone_number' => $user->getPhoneNumber(),
+            'birth_date' => $user->getBirthDate(),
+            'email' => $user->getEmail(),
+            'photos' => $this->resourceRepository->getResource(ResourceDestination::ON_PROFILE)]);
+
+        return $this->render('profile', $messages);
     }
 }
