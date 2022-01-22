@@ -16,13 +16,8 @@ class DefaultController extends AppController {
         $this->render('competition');
     }
 
-
     public function attendee_list() {
         $this->render('attendee-list');
-    }
-
-    public function competition_photos() {
-        $this->render('competition-photos');
     }
 
     public function achievements_mobile() {

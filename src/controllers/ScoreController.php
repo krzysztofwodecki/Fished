@@ -14,12 +14,10 @@ class ScoreController extends AppController {
     public function results() {
         $this->isLogged();
 
-        list($coded, $code) = $this->decodeCompetitionID();
+        $code = $this->decodeCompetitionID();
         $scoreList = $this->scoreRepository->getScoreList($code);
 
-//        var_dump($scoreList);
-
-        $messages = ['id' => $coded,'scores' => $scoreList];
+        $messages = ['scores' => $scoreList];
 
         return $this->render('results', $messages);
     }

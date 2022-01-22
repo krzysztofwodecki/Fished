@@ -17,7 +17,6 @@
             <div class ="return">
                 <a href="main_page">
                     <i class="fas fa-long-arrow-alt-left"></i>
-<!--                     TODO working cookie-->
                 </a>
             </div>
         </nav>
@@ -65,19 +64,19 @@
     
                 <div class="icons">
                     <div class="score-list">
-                        <a href="results?id=<?= $id ?>">
+                        <a href="results?id=<?= $_GET['id'] ?>">
                             <i class="fas fa-trophy"></i>
                         </a>
                     </div>
                     
                     <div class="uploaded-photos">
-                        <a href="competition_photos">
+                        <a href="competition_photos?id=<?= $_GET['id'] ?>">
                             <i class="fas fa-images"></i>
                         </a>
                     </div>
     
                     <div class="attendees">
-                        <a href="attendee_list">
+                        <a href="attendee_list?id=<?= $_GET['id'] ?>">
                             <i class="fas fa-users"></i>
                         </a>
                     </div>
@@ -86,7 +85,7 @@
 
             <div class="mobile-view">
                 <div class="map-icon">
-                    <a href="map_mobile">
+                    <a href="map_mobile?id=<?= $_GET['id'] ?>">
                         <i class="fas fa-map"></i>
                     </a>
                 </div>
@@ -98,25 +97,25 @@
                 </div>
                 
                 <div class="uploaded-photos-mobile">
-                    <a href="competition_photos">
+                    <a href="competition_photos?id=<?= $_GET['id'] ?>">
                         <i class="fas fa-images"></i>
                     </a>
                 </div>
 
                 <div class="news-mobile">
-                    <a href="news_mobile">
+                    <a href="news_mobile?id=<?= $_GET['id'] ?>">
                         <i class="fas fa-bell"></i>
                     </a>
                 </div>
 
                 <div class="score-list-mobile">
-                    <a href="results">
+                    <a href="results?id=<?= $_GET['id'] ?>">
                         <i class="fas fa-trophy"></i>
                     </a>
                 </div>
 
                 <div class="attendees-mobile">
-                    <a href="attendee_list">
+                    <a href="attendee_list?id=<?= $_GET['id'] ?>">
                         <i class="fas fa-users"></i>
                     </a>
                 </div>

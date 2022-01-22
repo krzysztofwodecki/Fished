@@ -8,8 +8,8 @@ class ScoreRepository extends Repository {
     public function getScoreList(string $code) {
         $stmt = $this->database->connect()->prepare('
             SELECT ua.name, ua.surname, sum(s.score) as "score"
-            FROM score s
-            INNER JOIN attendance a ON s.id_attendance = a.id_attendance
+            FROM attendance a
+            LEFT JOIN score s ON s.id_attendance = a.id_attendance
             INNER JOIN user_account ua ON a.id_user = ua.id_user_account
             INNER JOIN competitions c on a.id_competition = c.id_competitions
             WHERE c.code = :code
@@ -26,7 +26,9 @@ class ScoreRepository extends Repository {
         if($array != false) {
             foreach ($array as $element) {
                 if($element['name'] !== null) {
-                    $score = new Score($element['name'], $element['surname'], $element['score']);
+                    $score = new Score($element['name'],
+                        $element['surname'],
+                        $element['score'] == null ? 0 : $element['score']);
                     array_push($scores, $score);
                 }
             }

@@ -1,6 +1,6 @@
 <?php
 
-class Resource {
+class File {
     private $name;
     private $date;
 

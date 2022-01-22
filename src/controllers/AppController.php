@@ -47,12 +47,13 @@ class AppController {
     }
 
     protected function decodeCompetitionID() {
-        $coded = str_replace("id=", "", $_SERVER['QUERY_STRING']);
+        $coded = $this->isGet() ? $_GET['id'] : $_POST['id'];
 
         $code = base64_decode($coded);
         $code = str_replace(COMP_HASH, "", $code);
         $code = str_split($code, strlen($code)/2 + 2);
         $code = base64_decode($code[0]);
-        return array($coded, base64_decode($code));
+
+        return base64_decode($code);
     }
 }

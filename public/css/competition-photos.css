@@ -39,21 +39,35 @@ main {
     width: 100%;
 
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: minmax(min-content, max-content);
+
+    gap: 30px;
 
     overflow: auto;
 }
 
-.photos>div {
-    margin: 20px;
+.photos>div, .photos>a {
+    aspect-ratio: 3/2;
 
-    aspect-ratio: 1/1.5;
-    border: 1px solid black;
-    
+    background-color: black;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.add-photo>a {
+.photos>div {
+    background-color: #e5b547;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+form {
     height: 100%;
     width: 100%;
 
@@ -67,6 +81,19 @@ main {
     font: normal normal normal 12px/12px Arial;
     font-size: 3em;
     color: white;
+}
+
+label {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form:hover {
+    background: rgba(232, 189, 77, 0.7);
 }
 
 .photos::-webkit-scrollbar, .achievements::-webkit-scrollbar {

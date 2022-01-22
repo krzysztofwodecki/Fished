@@ -10,7 +10,7 @@
     <div class="base-container">
         <nav>
             <div class="return">
-                <a href="competition?id=<?= $id ?>   ">
+                <a href="competition?id=<?= $_GET['id'] ?>">
                     <i class="fas fa-long-arrow-alt-left"></i>
                 </a>
             </div>

@@ -20,8 +20,15 @@ Routing::post('add_competition', 'CompetitionController');
 Routing::post('add_fishery', 'MapController');
 
 Routing::get('profile', 'ProfileController');
-Routing::post('addPhotoOnProfile', 'PhotoController');
-Routing::get('deletePhotoOnProfile', 'PhotoController');
+
+
+Routing::post('addPhotoOnProfile', 'ProfilePhotosController');
+
+Routing::get('competition_photos', 'CompetitionPhotosController');
+Routing::post('addCompetitionPhoto', 'CompetitionPhotosController');
+
+
+Routing::get('deletePhotoOnProfile', 'FileController');
 
 
 Routing::get('competition', 'CompetitionController');
@@ -29,7 +36,7 @@ Routing::get('competition', 'CompetitionController');
 Routing::get('results', 'ScoreController');
 
 Routing::get('attendee_list', 'DefaultController');
-Routing::get('competition_photos', 'DefaultController');
+
 Routing::get('photos_mobile', 'DefaultController');
 Routing::get('map_mobile', 'DefaultController');
 Routing::get('achievements_mobile', 'DefaultController');

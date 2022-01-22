@@ -7,7 +7,7 @@ class ProfileController extends AppController {
     public function __construct() {
         parent::__construct();
         $this->userRepository = new UserRepository();
-        $this->resourceRepository = new ResourceRepository();
+        $this->resourceRepository = new FileRepository();
     }
 
     public function profile(array $messages = []) {
