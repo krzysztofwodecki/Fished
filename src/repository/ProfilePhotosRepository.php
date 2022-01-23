@@ -1,8 +1,10 @@
 <?php
 
+require_once 'FileRepository.php';
+
 class ProfilePhotosRepository extends FileRepository {
 
-    private function addOnProfile(File $res) {
+    public function addPhotoOnProfile($file) {
         $stmt = $this->database->connect()->prepare('
             WITH IDENTITY AS (INSERT INTO resources(resource_name, date) 
             VALUES (?,?) RETURNING id_resources)
@@ -12,13 +14,13 @@ class ProfilePhotosRepository extends FileRepository {
         ');
 
         $stmt->execute([
-            $res->getName(),
+            $file->getName(),
             date("Y.m.d"),
             $_COOKIE['userEmail']
         ]);
     }
 
-    private function getOnProfile(): array {
+    public function getPhotosForProfile(): array {
         $stmt = $this->database->connect()->prepare('
             SELECT resource_name FROM resources r
             FULL JOIN resources_on_profile rp ON r.id_resources=rp.id_resource

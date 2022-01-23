@@ -63,4 +63,18 @@ class UserRepository extends Repository {
         return true;
     }
 
+    public function checkIfUserCanCreate($email): bool {
+        $stmt = $this->database->connect()->prepare('
+            SELECT can_add_competitions FROM public.user_account ua
+            WHERE email = :email
+        ');
+
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $canCreate = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $canCreate['can_add_competitions'];
+    }
+
 }

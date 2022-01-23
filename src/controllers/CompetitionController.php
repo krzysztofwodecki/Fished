@@ -51,11 +51,51 @@ class CompetitionController extends AppController {
         $competition = new Competition($name, $date, $gathering_time, $start_time,
             $end_time, $sites, $id_place);
 
-        $competition->setRemainingSites(intval($sites) - 1);
+        $competition->setRemainingSites($sites);
         $this->createCode($competition);
 
         $this->competitionRepository->addCompetition($competition);
-        $this->competitionRepository->addAttendee($competition->getCode());
+
+        if(!$this->competitionRepository->addAttendee($competition->getCode())) {
+            $messages = ['messages' => "Napotkano błąd przy dodawaniu uczestnika",
+                'competitions' => $this->competitionRepository->getCompetitions()];
+
+            return $this->render('main_page', $messages);
+        }
+
+        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
+        return $this->render('main_page', $messages);
+    }
+
+    public function join_competition() {
+        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
+        if(!$this->isPost()) {
+            return $this->render('main_page', $messages);
+        }
+
+        $code = $_POST['code'];
+
+        if($this->competitionRepository->getCompetition($code) === null) {
+            array_push($messages, ['message' => "Niepoprawny kod"]);
+
+            return $this->render('main_page', $messages);
+        }
+
+        if($this->competitionRepository->getRemainingSites($code) == 0) {
+            array_push($messages, ['message' => "Brak wolnych miejsc na zawodach"]);
+
+            return $this->render('main_page', $messages);
+        }
+
+        if(!$this->competitionRepository->addAttendee($code)) {
+            array_push($messages, ['message' => "Błąd podczas dodawania uczestnika"]);
+
+            return $this->render('main_page', $messages);
+        }
+
+        //TODO already contestant, old competition
 
         $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
 

@@ -1,7 +1,7 @@
 <?php
 
 require_once 'AppController.php';
-require_once 'ProfileController.php';
+require_once 'UserController.php';
 require_once __DIR__ . '/../models/File.php';
 require_once __DIR__ . '/../repository/FileRepository.php';
 
@@ -51,7 +51,7 @@ class FileController extends AppController {
 
     protected function deletePhoto() {
         if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null) {
-            if($this->resourceRepository->deleteResource($_GET['selectedPhoto'])){
+            if($this->resourceRepository->deleteFile($_GET['selectedPhoto'])){
                 unlink(dirname(__DIR__).self::UPLOAD_DIRECTORY.$_GET['selectedPhoto']);
             }
         }

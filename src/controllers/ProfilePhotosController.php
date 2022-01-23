@@ -1,19 +1,25 @@
 <?php
 
 require_once 'FileController.php';
-require_once 'ProfileController.php';
-require_once __DIR__."/../repository/UserRepository.php";
+require_once 'UserController.php';
+require_once __DIR__."/../repository/ProfilePhotosRepository.php";
 
 class ProfilePhotosController extends FileController {
     private $profileController;
+    private $profilePhotosRepository;
 
     public function __construct() {
         parent::__construct();
-        $this->profileController = new ProfileController();
+        $this->profileController = new UserController();
+        $this->profilePhotosRepository = new ProfilePhotosRepository();
     }
 
     public function addPhotoOnProfile(){
-        $file = $this->addFile();
+        if($this->isPost()) {
+            $file = $this->addFile();
+            $this->profilePhotosRepository->addPhotoOnProfile($file);
+        }
+
         $this->profileController->profile();
     }
 

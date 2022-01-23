@@ -57,15 +57,22 @@ class CompetitionRepository extends Repository {
 
         $element = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $this->createCompetitionInstance($element);
+        if($element) {
+            if($element['comp_name'] !== null) {
+                return $this->createCompetitionInstance($element);
+            }
+        }
+
+        return null;
     }
 
     public function addCompetition(Competition $competition): void {
 
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO competitions (name, date, gathering_time, start_time,
-                                      code, id_place, sites, remaining_sites)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO competitions (name, date, gathering_time, start_time, end_time,
+                                      code, id_place, sites, remaining_sites, creator)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 
+                    (SELECT ua.id_user_account FROM user_account ua WHERE email = ?))
         ');
 
         $stmt->execute([
@@ -73,10 +80,12 @@ class CompetitionRepository extends Repository {
             $competition->getDate(),
             $competition->getGatheringTime(),
             $competition->getStartTime(),
+            $competition->getEndTime(),
             $competition->getCode(),
             $competition->getIdPlace(),
             $competition->getSites(),
-            $competition->getRemainingSites()
+            $competition->getRemainingSites(),
+            $_COOKIE['userEmail']
         ]);
     }
 
@@ -95,19 +104,47 @@ class CompetitionRepository extends Repository {
         } else return false;
     }
 
-    public function addAttendee($code) {
-        $stmt = $this->database->connect()->prepare('
+    public function addAttendee($code): bool {
+        $pdo = $this->database->connect();
+
+        try {
+            $pdo->beginTransaction();
+
+            $stmt = $pdo->prepare('
             INSERT INTO attendance(id_user, id_competition)
             VALUES ((SELECT id_user_account FROM user_account WHERE email = ?),
                     (SELECT id_competitions FROM competitions WHERE code = ?))
         ');
 
-        $stmt->execute([
-            $_COOKIE['userEmail'],
-            $code
-        ]);
+            $stmt->execute([
+                $_COOKIE['userEmail'],
+                $code
+            ]);
 
-        //TODO author of competition
+            $stmt = $pdo->prepare('
+            UPDATE competitions c SET remaining_sites = 
+                (SELECT comp.remaining_sites FROM competitions comp WHERE comp.code = :code) - 1 
+                WHERE c.code = :code
+        ');
+
+            $stmt->bindParam(':code', $code);
+            $stmt->execute();
+
+            $pdo->commit();
+
+            return true;
+
+        } catch (PDOException $e) {
+            $pdo->rollBack();
+
+            return false;
+        }
+    }
+
+
+    public function getRemainingSites($code) {
+        //TODO
+        return 200;
     }
 
     private function createCompetitionInstance($element): Competition {

@@ -1,13 +1,17 @@
 <?php
 
-class ProfileController extends AppController {
+require_once 'AppController.php';
+require_once __DIR__.'/../repository/UserRepository.php';
+require_once __DIR__.'/../repository/ProfilePhotosRepository.php';
+
+class UserController extends AppController {
     private $userRepository;
-    private $resourceRepository;
+    private $photosRepository;
 
     public function __construct() {
         parent::__construct();
         $this->userRepository = new UserRepository();
-        $this->resourceRepository = new FileRepository();
+        $this->photosRepository = new ProfilePhotosRepository();
     }
 
     public function profile(array $messages = []) {
@@ -21,8 +25,17 @@ class ProfileController extends AppController {
             'phone_number' => $user->getPhoneNumber(),
             'birth_date' => $user->getBirthDate(),
             'email' => $user->getEmail(),
-            'photos' => $this->resourceRepository->getResource(ResourceDestination::ON_PROFILE)]);
+            'photos' => $this->photosRepository->getPhotosForProfile()]);
 
         return $this->render('profile', $messages);
+    }
+
+    public function checkIfCanCreate() {
+        $canCreate = $this->userRepository->checkIfUserCanCreate($_COOKIE['userEmail']);
+
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo json_encode($canCreate);
     }
 }

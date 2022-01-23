@@ -15,21 +15,20 @@ Routing::post('register', 'SecurityController');
 Routing::get('main_page', 'CompetitionController');
 Routing::post('login', 'SecurityController');
 Routing::get('getFisheries', 'MapController');
+Routing::get('checkIfCanCreate', 'UserController');
 
+Routing::post('join_competition', 'CompetitionController');
 Routing::post('add_competition', 'CompetitionController');
 Routing::post('add_fishery', 'MapController');
 
-Routing::get('profile', 'ProfileController');
+Routing::get('profile', 'UserController');
 
 
 Routing::post('addPhotoOnProfile', 'ProfilePhotosController');
+Routing::get('deletePhotoOnProfile', 'ProfilePhotosController');
 
 Routing::get('competition_photos', 'CompetitionPhotosController');
 Routing::post('addCompetitionPhoto', 'CompetitionPhotosController');
-
-
-Routing::get('deletePhotoOnProfile', 'FileController');
-
 
 Routing::get('competition', 'CompetitionController');
 

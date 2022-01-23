@@ -10,6 +10,9 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
     <script src="/public/js/map.js" defer></script>
 
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/dropdown.js" defer></script>
+
     <title>Fished - strona główna</title>
 </head>
 
@@ -17,9 +20,12 @@
     <div class="base-container">
         <nav> 
             <div class="add-join-competition">
-                <a href="?action=addCompetition">
-                    <i class="fas fa-plus"></i>
-                </a>
+                <i class="fas fa-plus"></i>
+            </div>
+
+            <div class="dropdown_menu">
+                <a href="?action=joinCompetition">Dołącz do zawodów</a>
+                <a id="creator_visible" href="?action=addCompetition">Dodaj zawody</a>
             </div>
 
             <div class ="user-profile">
@@ -64,12 +70,23 @@
         <?php if(isset($_GET['action']) && $_GET['action'] !== null): ?>
         <div class="overlay">
             <div class="back">
-                <a href="<?php if($_GET['action']=="addCompetition" || $_GET['action']=="options")
-                                echo "main_page";
-                                else echo "main_page?action=addCompetition"?>">
+                <a href="<?php if($_GET['action']=="addFishery")
+                                echo "main_page?action=addCompetition";
+                                else echo "main_page"?>">
                     <i class="fas fa-long-arrow-alt-left"></i>
                 </a>
             </div>
+
+            <?php if($_GET['action']=="joinCompetition"): ?>
+            <form class="join-competition" action="join_competition" method="POST">
+                <h2>Dołącz do zawodów</h2>
+
+                <input name="code" type="text" placeholder='Kod zawodów' onfocus="this.placeholder = ''"
+                       onblur="this.placeholder = 'Kod zawodów'">
+
+                <button class="inner-buttons" type="submit">Dołącz</button>
+            </form>
+            <?php endif; ?>
 
             <?php if($_GET['action']=="addCompetition"): ?>
             <form class="add-form" action="add_competition" method="POST">
@@ -112,7 +129,7 @@
 
             <?php if($_GET['action']=="addFishery"): ?>
             <form class="add-form" action="add_fishery" method="POST">
-                <h1>Formularz dodawania zawodów</h1>
+                <h1>Formularz dodawania łowiska</h1>
 
                 <div class="left-form">
                     <label for="name">Nazwa łowiska:</label>
