@@ -20,7 +20,7 @@ class ProfilePhotosRepository extends FileRepository {
         ]);
     }
 
-    public function getPhotosForProfile(): array {
+    public function getPhotosForProfile($email): array {
         $stmt = $this->database->connect()->prepare('
             SELECT resource_name FROM resources r
             FULL JOIN resources_on_profile rp ON r.id_resources=rp.id_resource
@@ -28,7 +28,7 @@ class ProfilePhotosRepository extends FileRepository {
             WHERE email = :email
         ');
 
-        $stmt->bindParam(':email', $_COOKIE['userEmail']);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
 
         $res_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -43,5 +43,21 @@ class ProfilePhotosRepository extends FileRepository {
         }
 
         return $resources;
+    }
+
+    public function addProfilePhoto(File $profilePhoto) {
+        $stmt = $this->database->connect()->prepare('
+            WITH IDENTITY AS (INSERT INTO resources(resource_name, date) 
+            VALUES (?,?) RETURNING id_resources)
+            UPDATE user_account
+            SET id_profile_photo = (SELECT id_resources FROM IDENTITY)
+            WHERE email = ? 
+        ');
+
+        $stmt->execute([
+            $profilePhoto->getName(),
+            date("Y.m.d"),
+            $_COOKIE['userEmail']
+        ]);
     }
 }

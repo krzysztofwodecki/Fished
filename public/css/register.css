@@ -70,6 +70,10 @@ button:hover {
     background: #ecbf4a 0% 0% no-repeat padding-box;
 }
 
+button:disabled {
+    background: #9d7422 0% 0% no-repeat padding-box;
+}
+
 .register {
     margin-top: 1em;
 }

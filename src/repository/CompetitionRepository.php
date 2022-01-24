@@ -67,7 +67,6 @@ class CompetitionRepository extends Repository {
     }
 
     public function addCompetition(Competition $competition): void {
-
         $stmt = $this->database->connect()->prepare('
             INSERT INTO competitions (name, date, gathering_time, start_time, end_time,
                                       code, id_place, sites, remaining_sites, creator)
@@ -132,6 +131,8 @@ class CompetitionRepository extends Repository {
 
             $pdo->commit();
 
+            //TODO check on update cascade
+
             return true;
 
         } catch (PDOException $e) {
@@ -171,5 +172,25 @@ class CompetitionRepository extends Repository {
         $competition->setFishery($fishery);
 
         return $competition;
+    }
+
+    public function isCreator($code): bool {
+        $stmt = $this->database->connect()->prepare('
+            SELECT ua.name FROM competitions c 
+            INNER JOIN user_account ua on c.creator = ua.id_user_account
+            WHERE c.code = :code AND ua.email = :email
+        ');
+
+        $stmt->bindParam(":code", $code);
+        $stmt->bindParam(":email", $_COOKIE['userEmail']);
+
+        $stmt->execute();
+        $array = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($array == false) {
+            return false;
+        }
+
+        return true;
     }
 }

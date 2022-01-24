@@ -8,6 +8,7 @@ class User {
     private $birth_date;
     private $phone_number;
     private $id;
+    private $profile_photo;
 
     public function __construct(string $email, string $password, string $name, string $surname) {
         $this->email = $email;
@@ -84,6 +85,16 @@ class User {
     public function setId($id): void
     {
         $this->id = $id;
+    }
+
+    public function getProfilePhoto()
+    {
+        return $this->profile_photo;
+    }
+
+    public function setProfilePhoto($profile_photo): void
+    {
+        $this->profile_photo = $profile_photo;
     }
 
 

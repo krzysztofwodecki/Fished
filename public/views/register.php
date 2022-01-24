@@ -19,7 +19,7 @@
 
     <div class="register-container">
         <form class="register" action="register" method="POST">
-            <h1>Formularz rejestracji</h1>
+            <h1><b>Formularz rejestracji</b></h1>
             <input name="email" type="text" placeholder="E-mail" onfocus="this.placeholder = ''"
                    onblur="this.placeholder = 'E-mail'">
             <input name="password" type="password" placeholder="Hasło" onfocus="this.placeholder = ''"

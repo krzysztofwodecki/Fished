@@ -28,14 +28,17 @@
                 <h3><?= $competition->getFishery()->getTown(); ?></h3>
                 <div>
                     <div>
-                        <p>zbiórka: <?= date("H:i", strtotime($competition->getStartTime())); ?></p>
-                        <p>start: <?= date("H:i", strtotime($competition->getGatheringTime())); ?></p>
+                        <p>Zbiórka: <?= date("H:i", strtotime($competition->getStartTime())); ?></p>
+                        <p>Start: <?= date("H:i", strtotime($competition->getGatheringTime())); ?></p>
                     </div>
                     <div>
-                        <p>sektor: B</p>
-                        <p>stanowisko: 15</p>
+                        <p>Stanowisko: 15</p>
                     </div>
                 </div>
+
+                <?php if($creator): ?>
+                    <h3>Kod: <?= $competition->getCode() ?></h3>
+                <?php endif; ?>
 
                 <div class="fishery-info" style="display: none">
                     <div id="name"><?= $competition->getFishery()->getName(); ?></div>

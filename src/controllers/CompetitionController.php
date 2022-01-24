@@ -25,8 +25,10 @@ class CompetitionController extends AppController {
         // TODO validate user
 
         $code = $this->decodeCompetitionID();
+        $isCreator = $this->competitionRepository->isCreator($code);
 
-        $messages = ['competition' => $this->competitionRepository->getCompetition($code)];
+        $messages = ['creator' => $isCreator,
+            'competition' => $this->competitionRepository->getCompetition($code)];
 
         return $this->render('competition', $messages);
     }

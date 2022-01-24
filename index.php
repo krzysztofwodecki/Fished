@@ -22,6 +22,7 @@ Routing::post('add_competition', 'CompetitionController');
 Routing::post('add_fishery', 'MapController');
 
 Routing::get('profile', 'UserController');
+Routing::get('edit_profile', 'UserController');
 
 
 Routing::post('addPhotoOnProfile', 'ProfilePhotosController');

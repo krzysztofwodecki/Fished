@@ -6,6 +6,7 @@
     <title>Fished - profil</title>
 
     <script src="/public/js/deletePhoto.js" defer></script>
+    <script src="/public/js/editForm.js" defer></script>
 </head>
 
 <body>
@@ -29,9 +30,11 @@
                     </label>
                 </form>
             </div>
+            <!--TODO decrease size of the button-->
+
 
             <div class="edit">
-                <a href ="#">
+                <a href ="?action=editProfile">
                     <i class="fas fa-edit"></i>
                 </a>
             </div>
@@ -45,15 +48,24 @@
 
         <main>
             <div class="user-photo">
-                <div></div>
+                <?php if($user->getProfilePhoto() !== null): ?>
+                    <img src="/public/uploads/<?= $user->getProfilePhoto()->getName(); ?>">
+                <?php else: ?>
+                    <div></div>
+                <?php endif; ?>
+<!--                TODO opening and deleting photo-->
             </div>
 
             <section class="informations">
                 <div>
-                    <h2><?= $name.' '.$surname ?></h2>
-                    <h3><?= $birth_date ?></h3>
-                    <h3/><?= $phone_number ?></h3></h3>
-                    <p><?= $email ?></h3></p>
+                    <h2><?= $user->getName().' '.$user->getSurname() ?></h2>
+
+                    <?php if($user->getBirthDate() !== null): ?>
+                        <p> <?= date("d.m.Y", strtotime($user->getBirthDate()))."r."; ?> </p>
+                    <?php endif; ?>
+
+                    <p><?= $user->getPhoneNumber() ?></p>
+                    <p><?= $user->getEmail() ?></h3></p>
                 </div>
             </section>
 
@@ -77,7 +89,8 @@
                 </section>
             </section>
 
-            <?php if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null): ?>
+            <?php if((isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null)
+            || (isset($_GET['action']) && $_GET['action'] === 'editProfile')): ?>
                 <div class="image-overlay">
                     <div class="back-profile">
                         <a href="profile">
@@ -85,6 +98,7 @@
                         </a>
                     </div>
 
+                    <?php if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null): ?>
                     <div class="delete-photo">
                         <a href="deletePhotoOnProfile?selectedPhoto=<?=$_GET['selectedPhoto']?>">
                             <i class="far fa-trash-alt"></i>
@@ -92,7 +106,52 @@
                     </div>
 
                     <img src="/public/uploads/<?=$_GET['selectedPhoto']?>"
-                         alt="<?=$_GET['selectedPhoto']?>">
+                         alt="Nie znaleziono zdjęcia :(((((">
+                    <?php endif; ?>
+
+                    <?php if(isset($_GET['action']) && $_GET['action'] === 'editProfile'): ?>
+                    <div class="settings">
+                        <form class="edit_profile" action="edit_profile" method="POST" ENCTYPE="multipart/form-data">
+                            <h1><b>Edytuj swoje dane</b></h1>
+                            <div>
+                                <div class="left-form">
+                                    <label for="file">Zdjęcie profilowe:</label>
+                                    <input class="profile_photo_class" name="file" type="file">
+
+                                    <label for="name">Imię:</label>
+                                    <input name="name" type="text" placeholder="Imię" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Imię'">
+
+                                    <label for="surname">Nazwisko:</label>
+                                    <input name="surname" type="text" placeholder="Nazwisko" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Nazwisko'">
+
+                                    <label for="birth_date">Data urodzenia:</label>
+                                    <input name="birth_date" type="date">
+
+                                    <label for="phone_number">Numer telefonu:</label>
+                                    <input name="phone_number" type="text" placeholder="Numer telefonu" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Numer telefonu'">
+                                </div>
+
+                                <div class="right-form">
+                                    <label for="email">E-mail:</label>
+                                    <input name="email" type="text" placeholder="E-mail" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'E-mail'">
+
+                                    <label for="password">Hasło:</label>
+                                    <input name="password" type="password" placeholder="Hasło" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Hasło'">
+
+                                    <label for="Potwierdź hasło">Potwierdź hasło:</label>
+                                    <input name="confirm_password" type="password" placeholder="Potwierdź hasło" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Potwierdź hasło'">
+                                </div>
+                            </div>
+                            <button type="submit">Zmień dane</button>
+                        </form>
+                    </div>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
 

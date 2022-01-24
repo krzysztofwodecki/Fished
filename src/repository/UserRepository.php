@@ -2,28 +2,44 @@
 
 require_once 'Repository.php';
 require_once __DIR__.'/../models/User.php';
+require_once __DIR__.'/../models/File.php';
 
 class UserRepository extends Repository {
 
     public function getUser(string $email): ?User {
 
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.user_account ua, public.credentials c 
-            WHERE email = :email and c.id_user = ua.id_user_account
+            SELECT * FROM user_account ua
+            INNER JOIN credentials c ON c.id_user = ua.id_user_account 
+            LEFT JOIN resources r ON r.id_resources = ua.id_profile_photo
+            WHERE email = :email 
         ');
 
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $userArray = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($user == false) {
+        if($userArray == false) {
             return null;
         }
 
-        return new User(
-            $user['email'], $user['hash'], $user['name'], $user['surname']
-        );
+        $user = new User($userArray['email'], $userArray['hash'], $userArray['name'], $userArray['surname']);
+
+        if($userArray['phone'] !== null) {
+            $user->setPhoneNumber($userArray['phone']);
+        }
+
+        if($userArray['birth_date'] !== null) {
+            $user->setBirthDate($userArray['birth_date']);
+        }
+
+        if(isset($userArray['resource_name']) && $userArray['resource_name'] !== null) {
+            $profilePhoto = new File($userArray['resource_name']);
+            $user->setProfilePhoto($profilePhoto);
+        }
+
+        return $user;
     }
 
     public function addUser(User $user) {
@@ -75,6 +91,51 @@ class UserRepository extends Repository {
         $canCreate = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $canCreate['can_add_competitions'];
+    }
+
+    public function alterUser(User $user) {
+        $pdo = $this->database->connect();
+
+        try {
+            $pdo->beginTransaction();
+
+            $stmt = $pdo->prepare('
+                UPDATE user_account
+                SET name = ?, surname = ?, birth_date = ?, phone = ?, email = ?
+                WHERE email = ?
+            ');
+
+            $stmt->execute([
+                $user->getName(),
+                $user->getSurname(),
+                $user->getBirthDate(),
+                $user->getPhoneNumber(),
+                $user->getEmail(),
+                $_COOKIE['userEmail']
+            ]);
+
+            $stmt = $pdo->prepare('
+                UPDATE credentials
+                SET hash = ?
+                WHERE id_user = (SELECT id_user_account FROM user_account WHERE email = ?)
+            ');
+
+            $stmt->execute([
+                $user->getPassword(),
+                $user->getEmail()
+            ]);
+
+            $pdo->commit();
+
+            return true;
+
+        } catch (PDOException $e) {
+            $pdo->rollBack();
+
+            return false;
+        }
+
+
     }
 
 }

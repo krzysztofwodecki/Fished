@@ -21,6 +21,8 @@ class SecurityController extends AppController {
             $this->render('login');
         }
 
+        //todo: escapes adding competition
+
         $email = $_POST["email"];
         $password = $_POST["password"];
 
