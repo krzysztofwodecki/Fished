@@ -63,6 +63,15 @@ nav>div>a>i {
     justify-self: center;
 
     background: #FECA4F 0% 0% no-repeat padding-box;
+
+    overflow: hidden;
+}
+
+.attendant-photo>img {
+    height: 100%;
+    width: 100%;
+
+    background-size: contain;
 }
 
 .attendant-photo>div {

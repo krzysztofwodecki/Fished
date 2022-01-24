@@ -18,19 +18,27 @@
     
         <main>
             <div class="attendee-list">
+                <?php foreach($attendee as $attendant): ?>
                 <div>
                     <div class="attendant-photo">
-                        <div></div>
+                        <?php if($attendant->getProfilePhoto() !== null): ?>
+                            <img src="/public/uploads/<?= $attendant->getProfilePhoto()->getName(); ?>">
+                        <?php else: ?>
+                            <div></div>
+                        <?php endif; ?>
                     </div>
                     <div class="informations">
-                        <h1>Jan Kowalski</h1><h3>sektor: B</h3><h3>stanowisko: 15</h3>
+                        <h1><?= $attendant->getName().' '.$attendant->getSurname() ?></h1>
+                        <h3>stanowisko: <?= $attendant->getPosition();?> </h3>
                     </div>
                     <div class="more">
-                        <a href="#">
+                        <a href="profile?id=<?= $_GET['id'] ?>&user=<?=$attendant->getEmail()?>">
                             <i class="fas fa-ellipsis-v"></i>
                         </a>
+                        <!-- TODO dropdown menu-->
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
         </main>
     </div>

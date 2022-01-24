@@ -1,0 +1,65 @@
+.overlay, .overlay>* {
+    z-index: 2;
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.back>a>i {
+    color: white;
+    font-size: 3em;
+}
+
+.add-form {
+    padding: 20px;
+    border-radius: 20px;
+    margin: 50px;
+    background-color: #FECA4F;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    height: 80%;
+    width: 80%;
+
+    flex-direction: row;
+}
+
+.inner-buttons {
+    background: #116C73 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 2px #00000029;
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+    font: normal normal normal 14px/14px Arial;
+    margin-top: 40px;
+    color: white;
+    line-height: 2.5em;
+
+    text-decoration: none;
+}
+
+input {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 16px;
+    width: 20vw;
+    line-height: 2em;
+    text-align: center;
+}

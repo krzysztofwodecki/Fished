@@ -14,14 +14,13 @@
         <nav>
             <div class="messages">
                 <?php
-                if(isset($messages)){
-                    foreach($messages as $message) {
+                if(isset($message)) {
                         echo $message;
                     }
-                }
                 ?>
             </div>
 
+            <?php if(!isset($_GET['id'])): ?>
             <div class="add-photo">
                 <form action="addPhotoOnProfile" method="POST" ENCTYPE="multipart/form-data">
                     <input type="file" name="file" id="upload-button" onchange="this.form.submit()" hidden/>
@@ -38,9 +37,10 @@
                     <i class="fas fa-edit"></i>
                 </a>
             </div>
+            <?php endif; ?>
 
             <div class="return">
-                <a href="main_page">
+                <a href="<?= isset($_GET['id']) ? "attendee_list?id=".$_GET['id'] : "main_page" ?>">
                     <i class="fas fa-long-arrow-alt-left"></i>
                 </a>
             </div>
@@ -72,7 +72,8 @@
             <section class="gallery"> 
                 <section class="gallery-inner">
                     <?php foreach($photos as $photo): ?>
-                    <a href="?selectedPhoto=<?=$photo->getName()?>">
+                    <a href="?selectedPhoto=<?=$photo->getName()?>
+                            <?=isset($_GET['user']) ? "&id=".$_GET['id']."&user=".$_GET['user'] : "" ?>">
                         <img src="/public/uploads/<?=$photo->getName()?>" alt="<?=$photo->getName()?>">
                     </a>
                     <?php endforeach; ?>
@@ -93,17 +94,19 @@
             || (isset($_GET['action']) && $_GET['action'] === 'editProfile')): ?>
                 <div class="image-overlay">
                     <div class="back-profile">
-                        <a href="profile">
+                        <a href="profile<?= isset($_GET['user']) ? "?id=".$_GET['id']."&user=".$_GET['user'] : "" ?>">
                             <i class="fas fa-long-arrow-alt-left"></i>
                         </a>
                     </div>
 
                     <?php if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null): ?>
-                    <div class="delete-photo">
-                        <a href="deletePhotoOnProfile?selectedPhoto=<?=$_GET['selectedPhoto']?>">
-                            <i class="far fa-trash-alt"></i>
-                        </a>
-                    </div>
+                        <?php if(!isset($_GET['user'])): ?>
+                        <div class="delete-photo">
+                            <a href="deletePhotoOnProfile?selectedPhoto=<?=$_GET['selectedPhoto']?>">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </div>
+                        <?php endif; ?>
 
                     <img src="/public/uploads/<?=$_GET['selectedPhoto']?>"
                          alt="Nie znaleziono zdjęcia :(((((">
@@ -143,9 +146,16 @@
                                     <input name="password" type="password" placeholder="Hasło" onfocus="this.placeholder = ''"
                                            onblur="this.placeholder = 'Hasło'">
 
-                                    <label for="Potwierdź hasło">Potwierdź hasło:</label>
+                                    <label for="confirm_password">Potwierdź hasło:</label>
                                     <input name="confirm_password" type="password" placeholder="Potwierdź hasło" onfocus="this.placeholder = ''"
                                            onblur="this.placeholder = 'Potwierdź hasło'">
+
+                                    <label for="actual_password">Aktualne hasło:</label>
+                                    <input name="actual_password" type="password" placeholder="Aktualne hasło" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Aktualne hasło'">
+<!--                                    TODO js refuse to activate button without actual password-->
+
+                                    <p> <?= isset($message) ? $message : ""; ?> </p>
                                 </div>
                             </div>
                             <button type="submit">Zmień dane</button>

@@ -9,8 +9,9 @@ class User {
     private $phone_number;
     private $id;
     private $profile_photo;
+    private $position;
 
-    public function __construct(string $email, string $password, string $name, string $surname) {
+    public function __construct(string $name, string $surname, string $email, string $password = null) {
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
@@ -87,14 +88,23 @@ class User {
         $this->id = $id;
     }
 
-    public function getProfilePhoto()
-    {
+    public function getProfilePhoto() {
         return $this->profile_photo;
     }
 
     public function setProfilePhoto($profile_photo): void
     {
         $this->profile_photo = $profile_photo;
+    }
+
+    public function getPosition(): string
+    {
+        return $this->position;
+    }
+
+    public function setPosition(string $position): void
+    {
+        $this->position = $position;
     }
 
 

@@ -18,24 +18,36 @@ class UserController extends FileController {
     public function profile(array $messages = []) {
         $this->isLogged();
 
-        $user = $this->userRepository->getUser($_COOKIE['userEmail']);
+        $email = $_GET['user'] ?? $_COOKIE['userEmail'];
+
+        $user = $this->userRepository->getUser($email);
 
         $messages = array_merge($messages,
-            ['user' => $user, 'photos' => $this->photosRepository->getPhotosForProfile($_COOKIE['userEmail'])]);
+            ['user' => $user, 'photos' => $this->photosRepository->getPhotosForProfile($user->getEmail())]);
+
+        //TODO displays messages
 
         return $this->render('profile', $messages);
     }
 
     public function edit_profile() {
-        if(!$this->isPost()) {
-            $this->messages = ['photos' => $this->photosRepository->getPhotosForProfile($_COOKIE['userEmail']),
-                'user' => $this->userRepository->getUser($_COOKIE['userEmail'])];
+        $user = $this->userRepository->getUser($_COOKIE['userEmail']);
 
+        $this->messages['photos'] = $this->photosRepository->getPhotosForProfile($_COOKIE['userEmail']);
+        $this->messages['user'] = $user;
+
+        if(!$this->isPost()) {
+            return $this->render('profile', $this->messages);
+        }
+
+        if($_POST['actual_password'] === "" || !password_verify($_POST['actual_password'], $user->getPassword())) {
+            $this->messages['message'] = "Nieprawidłowe hasło";
             return $this->render('profile', $this->messages);
         }
 
         if(isset($_FILES['file']) && $_FILES['file']['name'] !== '') {
             $profilePhoto = $this->addFile();
+            //TODO deletes earlier
             $this->photosRepository->addProfilePhoto($profilePhoto);
         }
 

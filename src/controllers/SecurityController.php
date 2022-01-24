@@ -72,7 +72,7 @@ class SecurityController extends AppController {
         if($this->userRepository->getUser($email) === null) {
             $password = password_hash($password, PASSWORD_DEFAULT);
 
-            $user = new User($email, $password, $name, $surname);
+            $user = new User($name, $surname, $email, $password);
             $this->userRepository->addUser($user);
 
             return $this->render('login', ['messages' => ['Rejestracja przebiegła poprawnie']]);

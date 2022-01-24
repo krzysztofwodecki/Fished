@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/mainpage.css">
+    <link rel="stylesheet" type="text/css" href="public/css/overlay.css">
     <link rel="stylesheet" type="text/css" href="public/css/mainpage_overlay.css">
     <link rel="stylesheet" type="text/css" href="public/css/map_essentials.css">
     <link rel="icon" href="public/img/icon.svg">
@@ -34,11 +35,11 @@
                 </a>
             </div>
 
-            <div class ="settings">
-                <a href="?action=options">
-                    <i class="fas fa-cog"></i>
-                </a>
-            </div>
+<!--            <div class ="settings">-->
+<!--                <a href="?action=options">-->
+<!--                    <i class="fas fa-cog"></i>-->
+<!--                </a>-->
+<!--            </div>-->
 
             <div class="logout">
                 <a href="logout">

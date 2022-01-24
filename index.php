@@ -35,7 +35,7 @@ Routing::get('competition', 'CompetitionController');
 
 Routing::get('results', 'ScoreController');
 
-Routing::get('attendee_list', 'DefaultController');
+Routing::get('attendee_list', 'AttendanceController');
 
 Routing::get('photos_mobile', 'DefaultController');
 Routing::get('map_mobile', 'DefaultController');

@@ -80,6 +80,9 @@ main {
     box-shadow: 0px 3px 6px #00000029;
 
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .inner-news {
@@ -98,16 +101,32 @@ main {
     color: #116C73;
 }
 
-.inner-news>div {
+.inner-news>div, .add-announcement {
     max-height: 13vh;
     border: 1px solid black;
 
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 
     background-color: #FECA4F;
+}
+
+.inner-news>div {
+    justify-content: space-between;
+}
+
+.add-announcement {
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 10px 20px;
+
+    color: #116C73;
+    text-decoration: none;
+}
+
+.add-announcement>i {
+    font-size: 2.2em;
 }
 
 .inner-news>div>div {

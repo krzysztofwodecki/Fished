@@ -24,7 +24,7 @@ class UserRepository extends Repository {
             return null;
         }
 
-        $user = new User($userArray['email'], $userArray['hash'], $userArray['name'], $userArray['surname']);
+        $user = new User($userArray['name'], $userArray['surname'], $userArray['email'], $userArray['hash']);
 
         if($userArray['phone'] !== null) {
             $user->setPhoneNumber($userArray['phone']);
