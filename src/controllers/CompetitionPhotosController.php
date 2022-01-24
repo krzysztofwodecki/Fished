@@ -21,7 +21,7 @@ class CompetitionPhotosController extends FileController {
         }
 
         $code = $this->decodeCompetitionID();
-        $photo = $this->addFile();
+        $photo = $this->addFile('file');
 
         //TODO invalid photo
 

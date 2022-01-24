@@ -6,20 +6,20 @@ require_once __DIR__.'/../repository/CompetitionRepository.php';
 
 class CompetitionController extends AppController {
     private $competitionRepository;
+    private $announcementRepository;
 
     public function __construct() {
 
         parent::__construct();
         $this->competitionRepository = new CompetitionRepository();
+        $this->announcementRepository = new AnnouncementRepository();
     }
 
     public function competition() {
         if(!$this->isGet()) {
             $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
 
-            if(!$this->isPost()) {
-                return $this->render('main_page', $messages);
-            }
+            return $this->render('main_page', $messages);
         }
 
         // TODO validate user
@@ -28,7 +28,8 @@ class CompetitionController extends AppController {
         $isCreator = $this->competitionRepository->isCreator($code);
 
         $messages = ['creator' => $isCreator,
-            'competition' => $this->competitionRepository->getCompetition($code)];
+            'competition' => $this->competitionRepository->getCompetition($code),
+            'announcements' => $this->announcementRepository->getAnnouncements($code)];
 
         return $this->render('competition', $messages);
     }

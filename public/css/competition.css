@@ -101,7 +101,7 @@ main {
     color: #116C73;
 }
 
-.inner-news>div, .add-announcement {
+.inner-news>a, .add-announcement {
     max-height: 13vh;
     border: 1px solid black;
 
@@ -112,7 +112,7 @@ main {
     background-color: #FECA4F;
 }
 
-.inner-news>div {
+.inner-news>a {
     justify-content: space-between;
 }
 
@@ -129,17 +129,36 @@ main {
     font-size: 2.2em;
 }
 
-.inner-news>div>div {
+.inner-news>a>div {
     display: flex;
     flex-direction: column;
     margin-left: 1vw;
 }
 
-.inner-news>div>.photo {
+.inner-news>a>img {
     border: 1px solid black;
     height: 80%;
     aspect-ratio: 1/1;
     margin-right: 1vw;
+
+    background-size: contain;
+    overflow: hidden;
+}
+
+.gallery-inner>a{
+    aspect-ratio: 1/1.5;
+
+    background-color: #e5b547;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-news>a {
+    color: #116C73;
+    text-decoration: none;
 }
 
 .map {

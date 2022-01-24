@@ -63,3 +63,11 @@ input {
     line-height: 2em;
     text-align: center;
 }
+
+button:hover {
+    background: #0d4c50 0% 0% no-repeat padding-box;
+}
+
+input::-webkit-file-upload-button {
+    display: none;
+}

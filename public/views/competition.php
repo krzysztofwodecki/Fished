@@ -56,19 +56,25 @@
                 <div class="news">
                     <div class="inner-news">
                         <?php if($creator): ?>
-                        <a href="?id=<?= $_GET['id'] ?>&action=addAnnouncement" class="add-announcement">
-                            <i class="fas fa-plus"></i>
+                        <a href="?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>&action=addAnnouncement"
+                           class="add-announcement">
                             <h2>Dodaj ogłoszenie</h2>
+                            <i class="fas fa-plus"></i>
                         </a>
                         <?php endif; ?>
 
-                        <div>
+                        <?php foreach($announcements as $announcement): ?>
+                        <a href="#">
                             <div>
-                                <p>Wiadomość</p>
-                                <p>1h ago</p>
+                                <h2><?= $announcement->getTitle() ?></h2>
+                                <p><?= date("d.m.Y G:i", strtotime($announcement->getDate())) ?></p>
                             </div>
-                            <div class="photo"></div>
-                        </div>
+                            <?php if($announcement->getCoverPhoto()->getName() !== null): ?>
+                            <img src="/public/uploads/<?=$announcement->getCoverPhoto()->getName()?>"
+                                 alt="<?= $announcement->getCoverPhoto()->getName()?>"/>
+                            <?php endif; ?>
+                        </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
     
@@ -76,19 +82,19 @@
     
                 <div class="icons">
                     <div class="score-list">
-                        <a href="results?id=<?= $_GET['id'] ?>">
+                        <a href="results?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                             <i class="fas fa-trophy"></i>
                         </a>
                     </div>
                     
                     <div class="uploaded-photos">
-                        <a href="competition_photos?id=<?= $_GET['id'] ?>">
+                        <a href="competition_photos?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                             <i class="fas fa-images"></i>
                         </a>
                     </div>
     
                     <div class="attendees">
-                        <a href="attendee_list?id=<?= $_GET['id'] ?>">
+                        <a href="attendee_list?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                             <i class="fas fa-users"></i>
                         </a>
                     </div>
@@ -97,7 +103,7 @@
 
             <div class="mobile-view">
                 <div class="map-icon">
-                    <a href="map_mobile?id=<?= $_GET['id'] ?>">
+                    <a href="map_mobile?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                         <i class="fas fa-map"></i>
                     </a>
                 </div>
@@ -109,25 +115,25 @@
                 </div>
                 
                 <div class="uploaded-photos-mobile">
-                    <a href="competition_photos?id=<?= $_GET['id'] ?>">
+                    <a href="competition_photos?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                         <i class="fas fa-images"></i>
                     </a>
                 </div>
 
                 <div class="news-mobile">
-                    <a href="news_mobile?id=<?= $_GET['id'] ?>">
+                    <a href="news_mobile?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                         <i class="fas fa-bell"></i>
                     </a>
                 </div>
 
                 <div class="score-list-mobile">
-                    <a href="results?id=<?= $_GET['id'] ?>">
+                    <a href="results?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                         <i class="fas fa-trophy"></i>
                     </a>
                 </div>
 
                 <div class="attendees-mobile">
-                    <a href="attendee_list?id=<?= $_GET['id'] ?>">
+                    <a href="attendee_list?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                         <i class="fas fa-users"></i>
                     </a>
                 </div>
@@ -136,12 +142,14 @@
             <?php if(isset($_GET['action']) && $_GET['action'] !== null): ?>
             <div class="overlay">
                 <div class="back">
-                    <a href="competition?id=<?= $_GET['id']?>">
+                    <a href="competition?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
                         <i class="fas fa-long-arrow-alt-left"></i>
                     </a>
                 </div>
 
-                <form class="add-form" action="add_competition" method="POST" ENCTYPE="multipart/form-data">
+                <form class="add-form" action="add_announcement?id<?=
+                $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>"
+                      method="POST" ENCTYPE="multipart/form-data">
                     <h1>Formularz dodawania ogłoszenia</h1>
 
                     <label for="title">Tytuł ogłoszenia:</label>
@@ -149,13 +157,16 @@
                            onblur="this.placeholder = 'Tytuł ogłoszenia'">
 
                     <label for="cover-photo">Zdjęcie tytułowe:</label>
-                    <input name="cover-photo" type="file">
+                    <input class="file" name="cover-photo" type="file">
 
                     <label for="content">Zawartość ogłoszenia:</label>
                     <textarea name="content"> </textarea>
 
-                    <label for="attachement">Załącznik:</label>
-                    <input name="attachement" type="file">
+                    <label for="attachment">Załącznik:</label>
+                    <input class="file" name="attachment" type="file">
+
+                    <input type="text" name="id" value="<?=
+                    $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>" hidden/>
 <!--TODO to finish-->
                     <button class="inner-buttons" type="submit">Dodaj ogłoszenie</button>
                 </form>

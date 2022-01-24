@@ -16,7 +16,7 @@ class ProfilePhotosController extends FileController {
 
     public function addPhotoOnProfile(){
         if($this->isPost()) {
-            $file = $this->addFile();
+            $file = $this->addFile('file');
             $this->profilePhotosRepository->addPhotoOnProfile($file);
         }
 

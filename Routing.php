@@ -9,6 +9,7 @@ require_once 'src/controllers/CompetitionController.php';
 require_once 'src/controllers/MapController.php';
 require_once 'src/controllers/ScoreController.php';
 require_once 'src/controllers/AttendanceController.php';
+require_once 'src/controllers/AnnouncementController.php';
 
 class Routing {
     public static $routes;

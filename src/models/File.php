@@ -9,7 +9,7 @@ class File {
         $this->name = $name;
     }
 
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -24,7 +24,7 @@ class File {
         return $this->date;
     }
 
-    public function setDate($date): void
+    public function setDate($date)
     {
         $this->date = $date;
     }

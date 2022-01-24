@@ -46,7 +46,7 @@ class UserController extends FileController {
         }
 
         if(isset($_FILES['file']) && $_FILES['file']['name'] !== '') {
-            $profilePhoto = $this->addFile();
+            $profilePhoto = $this->addFile('file');
             //TODO deletes earlier
             $this->photosRepository->addProfilePhoto($profilePhoto);
         }

@@ -16,10 +16,17 @@ h1 {
 }
 
 textarea {
+    padding: 10px;
+
     resize: none;
 
     height: 40%;
-    width: 80%;
+    width: calc(80% - 20px);
 
     border-radius: 20px;
+}
+
+.file {
+    width: calc(80% - 40px);
+    padding: 0 20px;
 }
