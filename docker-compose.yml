@@ -16,5 +16,7 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
+    environment:
+      UPLOAD_LIMIT: 64M
     volumes:
       - .:/app/

@@ -18,7 +18,7 @@ class SecurityController extends AppController {
 
     public function login() {
         if(!$this->isPost()) {
-            $this->render('login');
+            return $this->render('login');
         }
 
         //todo: escapes adding competition

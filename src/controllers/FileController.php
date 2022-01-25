@@ -6,7 +6,7 @@ require_once __DIR__ . '/../models/File.php';
 require_once __DIR__ . '/../repository/FileRepository.php';
 
 class FileController extends AppController {
-    const MAX_FILE_SIZE = 2048*2048;
+    const MAX_FILE_SIZE = 64*1024*1024;
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg', 'image/gif'];
     const SUPPORTED_TYPES_ATTACHMENT = ['image/png', 'image/jpeg', 'image/gif',
         'application/pdf', 'application/zip',

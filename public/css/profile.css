@@ -303,9 +303,9 @@ button:disabled {
 
 .achievements-inner::-webkit-scrollbar, .gallery-inner::-webkit-scrollbar, .informations::-webkit-scrollbar {
     width: 0.8vw;
-  }
+}
    
-  .achievements-inner::-webkit-scrollbar-track, .gallery-inner::-webkit-scrollbar-track, .informations::-webkit-scrollbar-track {
+.achievements-inner::-webkit-scrollbar-track, .gallery-inner::-webkit-scrollbar-track, .informations::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
    

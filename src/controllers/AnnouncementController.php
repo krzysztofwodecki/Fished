@@ -42,4 +42,16 @@ class AnnouncementController extends FileController {
 
         return $this->render('competition', $messages);
     }
+
+    public function getAnnouncementDetails() {
+        $name = $_GET['announcementTitle'];
+        $date = $_GET['announcementDate'];
+
+        $announcement = $this->announcementRepository->getAnnouncement($name, $date);
+
+        header('Content-type: application/json');
+        http_response_code(200);
+
+        echo json_encode($announcement);
+    }
 }

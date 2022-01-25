@@ -11,6 +11,7 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
     <script src="/public/js/map.js" defer></script>
+    <script src="/public/js/getAnnouncement.js" defer></script>
 </head>
 
 <body>
@@ -64,7 +65,11 @@
                         <?php endif; ?>
 
                         <?php foreach($announcements as $announcement): ?>
-                        <a href="#">
+                        <a
+                                href="?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id']
+                        ?>&announcementTitle=<?= $announcement->getTitle()
+                        ?>&announcementDate=<?= $announcement->getDate()
+                                ?>">
                             <div>
                                 <h2><?= $announcement->getTitle() ?></h2>
                                 <p><?= date("d.m.Y G:i", strtotime($announcement->getDate())) ?></p>
@@ -139,7 +144,8 @@
                 </div>
             </div>
 
-            <?php if(isset($_GET['action']) && $_GET['action'] !== null): ?>
+            <?php if((isset($_GET['action']) && $_GET['action'] !== null)
+                || (isset($_GET['announcementTitle']) && $_GET['announcementTitle'] !== null)): ?>
             <div class="overlay">
                 <div class="back">
                     <a href="competition?id=<?= $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>">
@@ -147,7 +153,8 @@
                     </a>
                 </div>
 
-                <form class="add-form" action="add_announcement?id<?=
+                <?php if(isset($_GET['action']) && $_GET['action'] !== null): ?>
+                <form class="add-form" action="add_announcement?id=<?=
                 $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>"
                       method="POST" ENCTYPE="multipart/form-data">
                     <h1>Formularz dodawania ogłoszenia</h1>
@@ -167,9 +174,23 @@
 
                     <input type="text" name="id" value="<?=
                     $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>" hidden/>
-<!--TODO to finish-->
                     <button class="inner-buttons" type="submit">Dodaj ogłoszenie</button>
                 </form>
+                <?php endif; ?>
+
+                <?php if(isset($_GET['announcementTitle']) && $_GET['announcementTitle'] !== null): ?>
+                    <div class="announcement">
+                        <div>
+                            <img id="image">
+                            <p><?=date("d.m.Y G:i", strtotime($_GET['announcementDate']))?></p>
+                            <h1><?=$_GET['announcementTitle']?></h1>
+                            <p id="content"></p>
+                            <label for="attachment" id="label" class="hidden">Załącznik:</label>
+                            <a id="attachment" href="" download></a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
             </div>
             <?php endif; ?>
         </main>

@@ -7,7 +7,7 @@ class AnnouncementRepository extends FileRepository {
     private $coverPhotoId = null;
     private $attachmentId = null;
 
-    public function addAnnouncement($code, Announcement $announcement) {
+    public function addAnnouncement($code, $announcement) {
         if($announcement->getCoverPhoto() !== null) {
             $this->coverPhotoId = $this->addFile($announcement->getCoverPhoto());
         }
@@ -61,5 +61,26 @@ class AnnouncementRepository extends FileRepository {
         }
 
         return $announcements;
+    }
+
+    public function getAnnouncement($name, $date) {
+        $stmt = $this->database->connect()->prepare('
+            SELECT content, pp.resource_name as "photo", att.resource_name as "att"
+            FROM announcements a
+            LEFT JOIN resources pp ON  pp.id_resources = a.id_photo
+            LEFT JOIN resources att ON att.id_resources = a.id_attachment
+            WHERE a.title = ? and a.date = ?
+        ');
+
+        $stmt->execute([
+            $name,
+            date("Y-m-d G:i", strtotime($date))
+        ]);
+
+        $announcement = $stmt->fetch();
+
+        return ['details' => $announcement['content'],
+            'photo' => $announcement['photo'],
+            'att' => $announcement['att']];
     }
 }
