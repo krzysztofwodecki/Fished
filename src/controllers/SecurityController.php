@@ -44,8 +44,6 @@ class SecurityController extends AppController {
             setcookie('userEmail', $user->getEmail(), time() + (86400 * 30), "/");
         }
 
-        //TODO session start
-
         $messages = ['competitions' => $this->competitionRepository->getCompetitions($user)];
 
         return $this->render('main_page', $messages);

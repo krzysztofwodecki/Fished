@@ -8,8 +8,6 @@ const content = document.getElementById('content');
 const attachment = document.getElementById('attachment');
 const label = document.getElementById('label');
 
-//TODO guarantee only one uri
-
 fetch("/getAnnouncementDetails?announcementTitle=" + announcementTitle +
     "&announcementDate=" + announcementDate, {
     method: "GET"
@@ -20,7 +18,6 @@ fetch("/getAnnouncementDetails?announcementTitle=" + announcementTitle +
 });
 
 function addDetails(details) {
-    console.log(attachment);
     image.src = '/public/uploads/' + details['photo'];
     content.innerText = details['details'];
     attachment.href = '/public/uploads/' + details['att'];

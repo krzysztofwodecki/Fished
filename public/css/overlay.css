@@ -64,6 +64,24 @@ input {
     text-align: center;
 }
 
+.back-photo, .delete-photo {
+    position: absolute;
+    top: 10px;
+}
+
+.back-photo {
+    left: 20px;
+}
+
+.delete-photo {
+    right: 20px;
+}
+
+.overlay>img {
+    max-height: 90%;
+    max-width: 90%;
+}
+
 button:hover {
     background: #0d4c50 0% 0% no-repeat padding-box;
 }
@@ -71,3 +89,4 @@ button:hover {
 input::-webkit-file-upload-button {
     display: none;
 }
+

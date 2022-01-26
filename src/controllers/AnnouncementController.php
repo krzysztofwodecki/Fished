@@ -16,7 +16,7 @@ class AnnouncementController extends FileController {
 
     public function add_announcement() {
         if(!$this->isPost()){
-            return $this->render('competition', []);
+            return $this->render('competition');
         }
 
         $announcement = new Announcement($_POST['title'], $_POST['content']);

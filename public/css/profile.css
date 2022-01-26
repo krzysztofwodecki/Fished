@@ -184,18 +184,6 @@ i {
     aspect-ratio: 1/1;
 }
 
-.image-overlay {
-    height: 100vh;
-    width: 100vw;
-
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.9);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .settings {
     height: 80%;
     width: 80%;
@@ -277,24 +265,6 @@ h1 {
 
 button:disabled {
     background: #9d7422 0% 0% no-repeat padding-box;
-}
-
-.back-profile, .delete-photo {
-    position: absolute;
-    top: 10px;
-}
-
-.back-profile {
-    left: 20px;
-}
-
-.delete-photo {
-    right: 20px;
-}
-
-.image-overlay>img {
-    max-height: 90%;
-    max-width: 90%;
 }
 
 .mobile-icons {

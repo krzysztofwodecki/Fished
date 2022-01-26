@@ -15,17 +15,17 @@ class UserController extends FileController {
         $this->photosRepository = new ProfilePhotosRepository();
     }
 
-    public function profile(array $messages = []) {
+    public function profile($message = null) {
         $this->isLogged();
 
         $email = $_GET['user'] ?? $_COOKIE['userEmail'];
 
         $user = $this->userRepository->getUser($email);
 
-        $messages = array_merge($messages,
-            ['user' => $user, 'photos' => $this->photosRepository->getPhotosForProfile($user->getEmail())]);
-
-        //TODO displays messages
+        $messages = [
+            'message' => $message,
+            'user' => $user,
+            'photos' => $this->photosRepository->getPhotosForProfile($user->getEmail())];
 
         return $this->render('profile', $messages);
     }
@@ -47,7 +47,11 @@ class UserController extends FileController {
 
         if(isset($_FILES['file']) && $_FILES['file']['name'] !== '') {
             $profilePhoto = $this->addFile('file');
-            //TODO deletes earlier
+
+            if($user->getProfilePhoto() !== null) {
+                $this->deletePhoto($user->getProfilePhoto()->getName());
+            }
+
             $this->photosRepository->addProfilePhoto($profilePhoto);
         }
 

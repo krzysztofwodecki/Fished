@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 .base-container {
@@ -17,7 +18,7 @@ nav {
     padding: 10px 20px;
 }
 
-nav>div>a>i {
+nav>div>a>i, .overlay>div>a>i {
     font-size: 4em;
     color: white;
 }
@@ -31,7 +32,9 @@ main {
 
     overflow: hidden;
 
-    margin: 0px 50px 50px 50px;
+    margin: 0 50px 50px 50px;
+
+    display: flex;
 }
 
 .photos {
@@ -67,7 +70,7 @@ img {
     max-width: 100%;
 }
 
-form {
+.add-photo>form {
     height: 100%;
     width: 100%;
 
@@ -92,7 +95,75 @@ label {
     justify-content: center;
 }
 
-form:hover {
+#comp {
+    max-width: 75%;
+}
+
+.score {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+
+    height: 100%;
+    width: 25%;
+
+    background: #FECA4F;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font: normal normal normal 16px/16px Arial;
+    color: #116C73;
+}
+
+.grade-photo {
+    max-height: calc(100% - 40px);
+    min-height: calc(30% - 40px);
+
+    width: calc(100% - 40px);
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, textarea {
+    width: 80%;
+}
+
+textarea {
+    height: 100%;
+
+    padding: 15px;
+    border-radius: 15px;
+    resize: none;
+}
+
+.grade-container {
+    max-width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grade {
+    background: white;
+    border: solid 1px black;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none;
+}
+
+.add-photo>form:hover {
     background: rgba(232, 189, 77, 0.7);
 }
 

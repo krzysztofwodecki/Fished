@@ -22,8 +22,6 @@ class CompetitionController extends AppController {
             return $this->render('main_page', $messages);
         }
 
-        // TODO validate user
-
         $code = $this->decodeCompetitionID();
         $isCreator = $this->competitionRepository->isCreator($code);
 
@@ -48,8 +46,6 @@ class CompetitionController extends AppController {
         $end_time = $_POST['end_time'];
         $sites = $_POST['sites'];
         $id_place = $_POST['fishery'];
-
-        //TODO competition end_time
 
         $competition = new Competition($name, $date, $gathering_time, $start_time,
             $end_time, $sites, $id_place);
@@ -79,26 +75,40 @@ class CompetitionController extends AppController {
         }
 
         $code = $_POST['code'];
+        $competition = $this->competitionRepository->getCompetition($code);
 
-        if($this->competitionRepository->getCompetition($code) === null) {
-            array_push($messages, ['message' => "Niepoprawny kod"]);
-
-            return $this->render('main_page', $messages);
-        }
-
-        if($this->competitionRepository->getRemainingSites($code) == 0) {
-            array_push($messages, ['message' => "Brak wolnych miejsc na zawodach"]);
+        if($competition === null) {
+            $messages['message'] = "Niepoprawny kod";
 
             return $this->render('main_page', $messages);
         }
 
-        if(!$this->competitionRepository->addAttendee($code)) {
-            array_push($messages, ['message' => "Błąd podczas dodawania uczestnika"]);
+        if($competition->getRemainingSites($code) == 0) {
+            $messages['message'] = "Brak wolnych miejsc na zawodach";
 
             return $this->render('main_page', $messages);
         }
 
-        //TODO already contestant, old competition
+        $position = $this->getUniquePosition($competition);
+        $endTime = date("'Y-m-d H:i:s'",strtotime($competition->getDate().$competition->getEndTime()));
+
+        if($endTime < date("'Y-m-d H:i:s'")) {
+            $messages['message'] = "Zawody nieaktualne";
+
+            return $this->render('main_page', $messages);
+        }
+
+        if($this->competitionRepository->isContestant($code)) {
+            $messages['message'] = "Jesteś już uczestnikiem";
+
+            return $this->render('main_page', $messages);
+        }
+
+        if(!$this->competitionRepository->addAttendee($code, $position)) {
+            $messages['message'] = "Błąd podczas dodawania uczestnika";
+
+            return $this->render('main_page', $messages);
+        }
 
         $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
 
@@ -126,5 +136,13 @@ class CompetitionController extends AppController {
         } while (!$this->competitionRepository->codeUnique($code));
 
         $competition->setCode($code);
+    }
+
+    private function getUniquePosition(Competition $competition) {
+        do {
+            $position = mt_rand(1, $competition->getSites());
+        } while(!$this->competitionRepository->positionUniqueness($position));
+
+        return $position;
     }
 }

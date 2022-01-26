@@ -12,8 +12,6 @@ class Competition {
     private $remaining_sites;
     private $fishery;
 
-    // TODO end_time
-
     public function __construct($name, $date, $gathering_time, $start_time,
                                 $end_time, $sites, $id_place) {
 

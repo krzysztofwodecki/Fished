@@ -25,7 +25,7 @@ class DefaultController extends AppController {
     }
 
     public function map_mobile() {
-        $this->render('map-mobile');
+        $this->render('mapMainPage-mobile');
     }
 
     public function photos_mobile() {

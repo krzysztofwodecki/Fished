@@ -1,35 +1,25 @@
 <?php
 
 class Score {
-    private $name;
-    private $surname;
+    private $photo;
     private $score;
+    private $argumentation;
 
-    public function __construct($name, $surname, $score)
+    public function __construct($photo, $score, $argumentation)
     {
-        $this->name = $name;
-        $this->surname = $surname;
+        $this->photo = $photo;
         $this->score = $score;
+        $this->argumentation = $argumentation;
     }
 
-    public function getName()
+    public function getPhoto()
     {
-        return $this->name;
+        return $this->photo;
     }
 
-    public function setName($name)
+    public function setPhoto($photo): void
     {
-        $this->name = $name;
-    }
-
-    public function getSurname()
-    {
-        return $this->surname;
-    }
-
-    public function setSurname($surname)
-    {
-        $this->surname = $surname;
+        $this->photo = $photo;
     }
 
     public function getScore()
@@ -37,9 +27,19 @@ class Score {
         return $this->score;
     }
 
-    public function setScore($score)
+    public function setScore($score): void
     {
         $this->score = $score;
+    }
+
+    public function getArgumentation()
+    {
+        return $this->argumentation;
+    }
+
+    public function setArgumentation($argumentation): void
+    {
+        $this->argumentation = $argumentation;
     }
 
 

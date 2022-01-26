@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/profile.css"> 
+    <link rel="stylesheet" type="text/css" href="public/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="public/css/overlay.css">
     <link rel="icon" href="public/img/icon.svg">
     <script src="https://kit.fontawesome.com/8ac407c03d.js" crossorigin="anonymous"></script>
     <title>Fished - profil</title>
 
-    <script src="/public/js/deletePhoto.js" defer></script>
-    <script src="/public/js/editForm.js" defer></script>
+    <script src="/public/js/editFormValidate.js" defer></script>
 </head>
 
 <body>
@@ -53,7 +53,6 @@
                 <?php else: ?>
                     <div></div>
                 <?php endif; ?>
-<!--                TODO opening and deleting photo-->
             </div>
 
             <section class="informations">
@@ -83,6 +82,8 @@
             <section class="achievements-section">
                 <section class="achievements-inner">
                     <div>
+
+<!--                        todo achievements-->
                         <p>I miejsce</p>
                         <p>Puchar Kocinki</p>
                         <div class = "cup-photo"></div>
@@ -92,8 +93,8 @@
 
             <?php if((isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null)
             || (isset($_GET['action']) && $_GET['action'] === 'editProfile')): ?>
-                <div class="image-overlay">
-                    <div class="back-profile">
+                <div class="overlay">
+                    <div class="back-photo">
                         <a href="profile<?= isset($_GET['user']) ? "?id=".$_GET['id']."&user=".$_GET['user'] : "" ?>">
                             <i class="fas fa-long-arrow-alt-left"></i>
                         </a>

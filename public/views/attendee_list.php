@@ -35,7 +35,6 @@
                         <a href="profile?id=<?= $_GET['id'] ?>&user=<?=$attendant->getEmail()?>">
                             <i class="fas fa-ellipsis-v"></i>
                         </a>
-                        <!-- TODO dropdown menu-->
                     </div>
                 </div>
                 <?php endforeach; ?>

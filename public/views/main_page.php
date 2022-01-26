@@ -9,10 +9,12 @@
 
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
-    <script src="/public/js/map.js" defer></script>
 
-    <script src="/public/js/jquery.js"></script>
-    <script src="/public/js/dropdown.js" defer></script>
+    <script type="text/javascript" src="/public/js/mapMainPage.js" defer></script>
+    <script type="text/javascript" src="/public/js/jquery.js"></script>
+    <script type="text/javascript" src="/public/js/dropdown.js" defer></script>
+    <script type="text/javascript" src="/public/js/addFisheryValidate.js" defer></script>
+    <script type="text/javascript" src="/public/js/addCompetitionValidate.js" defer></script>
 
     <title>Fished - strona główna</title>
 </head>
@@ -79,7 +81,7 @@
             </div>
 
             <?php if($_GET['action']=="joinCompetition"): ?>
-            <form class="join-competition" action="join_competition" method="POST">
+            <form class="grade-photo" action="grade-photo" method="POST">
                 <h2>Dołącz do zawodów</h2>
 
                 <input name="code" type="text" placeholder='Kod zawodów' onfocus="this.placeholder = ''"
@@ -161,8 +163,8 @@
             </form>
             <?php endif; ?>
 
-            <?php if($_GET['action']=="options"): ?>
-            <?php endif; ?>
+<!--            --><?php //if($_GET['action']=="options"): ?>
+<!--            --><?php //endif; ?>
 
         </div>
         <?php endif; ?>

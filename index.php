@@ -30,6 +30,8 @@ Routing::get('deletePhotoOnProfile', 'ProfilePhotosController');
 
 Routing::get('competition_photos', 'CompetitionPhotosController');
 Routing::post('addCompetitionPhoto', 'CompetitionPhotosController');
+Routing::post('grade_photo', 'ScoreController');
+Routing::get('getScoreDetails', 'ScoreController');
 
 Routing::post('add_announcement', 'AnnouncementController');
 Routing::post('getAnnouncementDetails', 'AnnouncementController');

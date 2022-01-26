@@ -39,8 +39,6 @@ class CompetitionRepository extends Repository {
             }
         }
 
-        // TODO order by date
-
         return $competitions;
     }
 
@@ -103,21 +101,22 @@ class CompetitionRepository extends Repository {
         } else return false;
     }
 
-    public function addAttendee($code): bool {
+    public function addAttendee($code, $position): bool {
         $pdo = $this->database->connect();
 
         try {
             $pdo->beginTransaction();
 
             $stmt = $pdo->prepare('
-            INSERT INTO attendance(id_user, id_competition)
+            INSERT INTO attendance(id_user, id_competition, position)
             VALUES ((SELECT id_user_account FROM user_account WHERE email = ?),
-                    (SELECT id_competitions FROM competitions WHERE code = ?))
+                    (SELECT id_competitions FROM competitions WHERE code = ?), ?)
         ');
 
             $stmt->execute([
                 $_COOKIE['userEmail'],
-                $code
+                $code,
+                $position
             ]);
 
             $stmt = $pdo->prepare('
@@ -131,8 +130,6 @@ class CompetitionRepository extends Repository {
 
             $pdo->commit();
 
-            //TODO check on update cascade
-
             return true;
 
         } catch (PDOException $e) {
@@ -142,10 +139,19 @@ class CompetitionRepository extends Repository {
         }
     }
 
-
     public function getRemainingSites($code) {
-        //TODO
-        return 200;
+        $stmt = $this->database->connect()->prepare('
+            SELECT remaining_sites FROM competitions
+            WHERE code = ?
+        ');
+
+        $stmt->execute([
+            $code
+        ]);
+
+        $remaining_sites = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $remaining_sites['remaining_sites'];
     }
 
     private function createCompetitionInstance($element): Competition {
@@ -192,5 +198,61 @@ class CompetitionRepository extends Repository {
         }
 
         return true;
+    }
+
+    public function isJudge($code) {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM competitions c 
+            INNER JOIN attendance a on a.id_competition = c.id_competitions
+            INNER JOIN user_account ua on a.id_user = ua.id_user_account
+            WHERE c.code = :code AND ua.email = :email AND a.judge IS true
+        ');
+
+        $stmt->bindParam(":code", $code);
+        $stmt->bindParam(":email", $_COOKIE['userEmail']);
+
+        $stmt->execute();
+        $array = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($array == false) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public function positionUniqueness($position) {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM attendance
+            WHERE position = ?
+        ');
+
+        $stmt->execute([
+            $position
+        ]);
+
+        if($stmt->fetch(PDO::FETCH_ASSOC) == false) {
+            return true;
+        } else return true;
+    }
+
+    public function isContestant($code) {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM attendance
+            INNER JOIN user_account ua on attendance.id_user = ua.id_user_account
+            INNER JOIN competitions c on attendance.id_competition = c.id_competitions
+            WHERE code = ? and email = ?
+        ');
+
+        $stmt->execute([
+            $code,
+            $_COOKIE['userEmail']
+        ]);
+
+        if($stmt->fetch(PDO::FETCH_ASSOC) !== false) {
+            return true;
+        } else return true;
+
     }
 }

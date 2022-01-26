@@ -22,15 +22,32 @@ class CompetitionPhotosRepository extends FileRepository {
     public function getCompetitionPhotos($code) {
         $stmt = $this->database->connect()->prepare('
             SELECT resource_name as "name" FROM resources r
-            FULL JOIN score s ON r.id_resources = s.id_photo
-            FULL JOIN attendance a ON a.id_attendance = s.id_attendance
-            FULL JOIN user_account ua on ua.id_user_account = a.id_user
-            FULL JOIN competitions c on a.id_competition = c.id_competitions
+            INNER JOIN score s ON r.id_resources = s.id_photo
+            INNER JOIN attendance a ON a.id_attendance = s.id_attendance
+            INNER JOIN user_account ua on ua.id_user_account = a.id_user
+            INNER JOIN competitions c on a.id_competition = c.id_competitions
             WHERE ua.email = :email 
             AND c.code = :code  
         ');
 
         $stmt->bindParam(':email', $_COOKIE['userEmail']);
+
+        return $this->fetchPhotos($stmt, $code);
+    }
+
+    public function getAllCompetitionPhotos($code) {
+        $stmt = $this->database->connect()->prepare('
+            SELECT resource_name as "name" FROM resources r
+            INNER JOIN score s ON r.id_resources = s.id_photo
+            INNER JOIN attendance a ON a.id_attendance = s.id_attendance
+            INNER JOIN competitions c on a.id_competition = c.id_competitions
+            AND c.code = :code AND score IS null
+        ');
+
+        return $this->fetchPhotos($stmt, $code);
+    }
+
+    private function fetchPhotos($stmt, $code) {
         $stmt->bindParam(':code', $code);
         $stmt->execute();
 

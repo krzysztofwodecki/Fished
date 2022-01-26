@@ -15,8 +15,6 @@ class FileController extends AppController {
 
     private $resourceRepository;
     private $message;
-    //TODO return message
-
 
     public function __construct() {
         parent::__construct();
@@ -35,31 +33,29 @@ class FileController extends AppController {
             return new File($current_time.$_FILES[$name]['name']);
         }
 
-        return null;
+        return $this->message;
     }
 
     private function validate($name):bool {
         $file = $_FILES[$name];
 
         if($file['size'] > self::MAX_FILE_SIZE) {
-            $this->message[] = 'Plik jest za duży.';
+            $this->message = 'Plik jest za duży.';
             return false;
         }
 
         if(!isset($file['type']) || !in_array($file['type'],
                 $name === 'attachment' ? self::SUPPORTED_TYPES_ATTACHMENT : self::SUPPORTED_TYPES)) {
-            $this->message[] = 'Nieprawidłowy format pliku.';
+            $this->message = 'Nieprawidłowy format pliku.';
             return false;
         }
 
         return true;
     }
 
-    protected function deletePhoto() {
-        if(isset($_GET['selectedPhoto']) && $_GET['selectedPhoto'] !== null) {
-            if($this->resourceRepository->deleteFile($_GET['selectedPhoto'])){
-                unlink(dirname(__DIR__).self::UPLOAD_DIRECTORY.$_GET['selectedPhoto']);
-            }
+    protected function deletePhoto($name) {
+        if($this->resourceRepository->deleteFile($name)){
+            unlink(dirname(__DIR__).self::UPLOAD_DIRECTORY.$name);
         }
     }
 }

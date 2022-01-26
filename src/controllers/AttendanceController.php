@@ -14,17 +14,14 @@ class AttendanceController extends AppController {
 
     public function attendee_list() {
         if(!$this->isGet()) {
-            $this->render('main_page', []);
+            $this->render('main_page');
         }
-
-        //TODO verify code
 
         $code = $this->decodeCompetitionID();
 
         $attendee = $this->attendanceRepository->getAttendeeList($code);
         $messages['attendee'] = $attendee;
 
-        //TODO change symbol from - to _
         $this->render('attendee_list', $messages);
     }
 }
