@@ -15,8 +15,6 @@ class CompetitionRepository extends Repository {
             WHERE ua.email = :email ORDER BY c.date;
         ');
 
-        //TODO make it a sql view
-
         if($user === null) {
             $stmt->bindParam(':email', $_COOKIE['userEmail']);
         } else {
@@ -174,6 +172,7 @@ class CompetitionRepository extends Repository {
             $element['id_place']
         );
 
+        $competition->setRemainingSites($element['remaining_sites']);
         $competition->setCode($element['code']);
         $competition->setFishery($fishery);
 
@@ -250,9 +249,9 @@ class CompetitionRepository extends Repository {
             $_COOKIE['userEmail']
         ]);
 
-        if($stmt->fetch(PDO::FETCH_ASSOC) !== false) {
+        if($stmt->fetch(PDO::FETCH_ASSOC)) {
             return true;
-        } else return true;
+        } else return false;
 
     }
 }

@@ -34,6 +34,8 @@ class CompetitionPhotosController extends FileController {
 
         $messages['photos'] = $this->competitionPhotosRepository->getCompetitionPhotos($this->code);
 
+        header('Location: competition_photos?id='.$_POST['id'], true, 303);
+
         return $this->render('competition_photos', $messages);
     }
 

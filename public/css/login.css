@@ -96,6 +96,14 @@ a {
         width: 70%;
     }
 
+    .messages, button {
+        font-size: 1.2em;
+    }
+
+    .register>a {
+        font-size: 1.04em;
+    }
+
     img {
         height: 5em;
         margin: 2em;

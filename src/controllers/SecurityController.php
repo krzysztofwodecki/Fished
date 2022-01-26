@@ -21,8 +21,6 @@ class SecurityController extends AppController {
             return $this->render('login');
         }
 
-        //todo: escapes adding competition
-
         $email = $_POST["email"];
         $password = $_POST["password"];
 
@@ -46,7 +44,13 @@ class SecurityController extends AppController {
 
         $messages = ['competitions' => $this->competitionRepository->getCompetitions($user)];
 
-        return $this->render('main_page', $messages);
+
+
+        header("Location: main_page", true, 303);
+
+
+
+//        return $this->render('main_page', $messages);
     }
 
     public function logout() {

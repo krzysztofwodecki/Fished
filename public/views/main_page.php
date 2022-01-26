@@ -13,8 +13,6 @@
     <script type="text/javascript" src="/public/js/mapMainPage.js" defer></script>
     <script type="text/javascript" src="/public/js/jquery.js"></script>
     <script type="text/javascript" src="/public/js/dropdown.js" defer></script>
-    <script type="text/javascript" src="/public/js/addFisheryValidate.js" defer></script>
-    <script type="text/javascript" src="/public/js/addCompetitionValidate.js" defer></script>
 
     <title>Fished - strona główna</title>
 </head>
@@ -81,7 +79,7 @@
             </div>
 
             <?php if($_GET['action']=="joinCompetition"): ?>
-            <form class="grade-photo" action="grade-photo" method="POST">
+            <form class="join-competition" action="join_competition" method="POST">
                 <h2>Dołącz do zawodów</h2>
 
                 <input name="code" type="text" placeholder='Kod zawodów' onfocus="this.placeholder = ''"
@@ -101,7 +99,7 @@
                            onblur="this.placeholder = 'Nazwa zawodów'">
 
                     <label for="date">Data zawodów:</label>
-                    <input name="date" type="date">
+                    <input name="date" type="date" min="<?= date("Y-m-d")?>">
 
                     <label for="gathering_time">Czas zbiórki:</label>
                     <input name="gathering_time" type="time">

@@ -23,9 +23,6 @@
             <div class="photos">
 
                 <?php if(!$isJudge && $takesPlace): ?>
-
-<!--                TODO active only between start and end-->
-
                 <div class="add-photo">
                     <form action="addCompetitionPhoto?id=<?=
                     $_SERVER['REQUEST_METHOD'] === 'GET' ? $_GET['id'] : $_POST['id'] ?>"
@@ -71,7 +68,7 @@
 
                 <input name="score" type="number" placeholder='Ocena ryby' onfocus="this.placeholder = ''"
                        onblur="this.placeholder = 'Ocena ryby'">
-<!--todo validate-->
+
                 <label for="argumentation">Argumentacja oceny:</label>
                 <textarea name="argumentation" rows="10"> </textarea>
 

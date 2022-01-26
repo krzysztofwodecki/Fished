@@ -35,8 +35,9 @@ class MapController extends AppController {
 
         $this->mapRepository->addFishery($fishery);
 
+        return header('Location: main_page?action=addCompetition', true, 303);
 
-        return $this->render('main_page', $messages);
+//        return $this->render('main_page', $messages);
     }
 
     public function getFisheries() {

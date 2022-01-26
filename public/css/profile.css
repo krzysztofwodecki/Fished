@@ -250,6 +250,11 @@ button {
     line-height: 2.5em;
 }
 
+.no-valid {
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 2px solid red;
+}
+
 button:hover {
     background: #1c7e86 0% 0% no-repeat padding-box;
 }

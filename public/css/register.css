@@ -151,13 +151,20 @@ h1 {
         margin-top: 20px;
     }
 
-    .register-container, .logo {
+    .register-container {
         width: 100%;
     }
 
     form.register {
         width: 80%;
-        margin: auto;
+    }
+
+    .password-validate {
+        display: none !important;
+    }
+
+    button, .messages {
+        font-size: 1em;
     }
 
     input, button {

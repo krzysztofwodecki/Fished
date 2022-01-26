@@ -8,18 +8,6 @@ class DefaultController extends AppController {
         $this->render('login');
     }
 
-    public function main_page() {
-        $this->render('main_page');
-    }
-
-    public function competition() {
-        $this->render('competition');
-    }
-
-    public function attendee_list() {
-        $this->render('attendee-list');
-    }
-
     public function achievements_mobile() {
         $this->render('achievements-mobile');
     }

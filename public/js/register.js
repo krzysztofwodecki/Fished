@@ -14,7 +14,6 @@ const upperLetter = document.getElementById("capital");
 const passwordNumber = document.getElementById("number");
 const passwordLength = document.getElementById("length");
 
-
 function isEmpty(text) {
     return /\S/.test(text);
 }
@@ -62,7 +61,6 @@ surnameInput.addEventListener('focusout', function(){
     markValidation(surnameInput, /^[A-ZĄĆŃĘŚŁÓŻŹ][a-ząćńęśłóżź]+(-[A-ZĄĆŃĘŚŁÓŻŹ][a-ząćńęśłóżź]+)?$/.test(surnameInput.value));
 });
 
-
 passwordInput.addEventListener('keyup', function(){
     passwordValidate(passwordInput.value);
 });
@@ -95,18 +93,24 @@ function passwordValidate(password) {
     } else {
         invalidate(passwordLength);
     }
+
+    if(password.match(lowerCaseLetters) && password.match(upperCaseLetters)
+    && password.match(numbers) && password.length >= 8) {
+        markValidation(passwordInput, true);
+        button.disabled = false;
+    } else {
+        markValidation(passwordInput, false);
+        button.disabled = true;
+    }
+
 }
 
 function validate(element) {
     element.classList.remove("invalid");
     element.classList.add("valid");
-
-    button.disabled = false
 }
 
 function invalidate(element) {
     element.classList.remove("valid");
     element.classList.add("invalid");
-
-    button.disabled = true
 }

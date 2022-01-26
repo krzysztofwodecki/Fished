@@ -40,4 +40,22 @@ class AttendanceRepository extends Repository {
 
         return $attendee;
     }
+
+    public function getAttendeePosition($code) {
+        $stmt = $this->database->connect()->prepare('
+            SELECT position FROM attendance a
+            INNER JOIN competitions c on c.id_competitions = a.id_competition
+            INNER JOIN user_account ua on a.id_user = ua.id_user_account
+            WHERE code = ? and email = ?
+        ');
+
+        $stmt->execute([
+           $code,
+           $_COOKIE['userEmail']
+        ]);
+
+        $position = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $position['position'];
+    }
 }

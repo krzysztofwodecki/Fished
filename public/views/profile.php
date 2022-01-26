@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/profile.css">
     <link rel="stylesheet" type="text/css" href="public/css/overlay.css">
+    <link rel="stylesheet" type="text/css" href="public/css/profile.css">
     <link rel="icon" href="public/img/icon.svg">
     <script src="https://kit.fontawesome.com/8ac407c03d.js" crossorigin="anonymous"></script>
     <title>Fished - profil</title>
@@ -29,7 +29,6 @@
                     </label>
                 </form>
             </div>
-            <!--TODO decrease size of the button-->
 
 
             <div class="edit">
@@ -81,13 +80,11 @@
 
             <section class="achievements-section">
                 <section class="achievements-inner">
-                    <div>
-
-<!--                        todo achievements-->
-                        <p>I miejsce</p>
-                        <p>Puchar Kocinki</p>
-                        <div class = "cup-photo"></div>
-                    </div>
+<!--                    <div>-->
+<!--                        <p>I miejsce</p>-->
+<!--                        <p>Puchar Kocinki</p>-->
+<!--                        <div class = "cup-photo"></div>-->
+<!--                    </div>-->
                 </section>
             </section>
 
@@ -131,7 +128,7 @@
                                            onblur="this.placeholder = 'Nazwisko'">
 
                                     <label for="birth_date">Data urodzenia:</label>
-                                    <input name="birth_date" type="date">
+                                    <input name="birth_date" type="date" max="<?= date("Y-m-d") ?>">
 
                                     <label for="phone_number">Numer telefonu:</label>
                                     <input name="phone_number" type="text" placeholder="Numer telefonu" onfocus="this.placeholder = ''"
@@ -154,12 +151,11 @@
                                     <label for="actual_password">Aktualne hasło:</label>
                                     <input name="actual_password" type="password" placeholder="Aktualne hasło" onfocus="this.placeholder = ''"
                                            onblur="this.placeholder = 'Aktualne hasło'">
-<!--                                    TODO js refuse to activate button without actual password-->
 
                                     <p> <?= isset($message) ? $message : ""; ?> </p>
                                 </div>
                             </div>
-                            <button type="submit">Zmień dane</button>
+                            <button type="submit" disabled>Zmień dane</button>
                         </form>
                     </div>
                     <?php endif; ?>

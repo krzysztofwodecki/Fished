@@ -35,7 +35,7 @@
                         <p>Start: <?= date("H:i", strtotime($competition->getGatheringTime())); ?></p>
                     </div>
                     <div>
-                        <p>Stanowisko: 15</p>
+                        <p>Stanowisko: <?= $position ?></p>
                     </div>
                 </div>
 

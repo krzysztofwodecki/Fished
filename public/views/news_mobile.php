@@ -10,7 +10,7 @@
     <div class = "base-container">
         <nav>
             <div class="return">
-                <a href="competition">
+                <a href="competition?id=<?= $_GET['id'] ?>">
                     <i class="fas fa-long-arrow-alt-left"></i>
                 </a>
             </div>
@@ -18,16 +18,16 @@
 
         <main>
             <div class="news">
+                <?php foreach($announcements as $announcement): ?>
                 <div>
-                    <div class="news-photo"></div>
-                    <h3>Baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaardzo długi tytuł</h3>
-                    <p>2h ago</p>
+                    <?php if($announcement->getCoverPhoto()->getName() !== null): ?>
+                        <img class="news-photo" src="/public/uploads/<?=$announcement->getCoverPhoto()->getName()?>"
+                             alt="<?= $announcement->getCoverPhoto()->getName()?>"/>
+                    <?php endif; ?>
+                    <h3><?= $announcement->getTitle() ?></h3>
+                    <p><?= date("d.m.Y G:i", strtotime($announcement->getDate())) ?></p>
                 </div>
-                <div>
-                    <div class="news-photo"></div>
-                    <h3>Baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaardzo długi tytuł</h3>
-                    <p>2h ago</p>
-                </div>
+                <?php endforeach; ?>
             </div>
         </main>
     </div>

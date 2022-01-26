@@ -80,6 +80,10 @@ main {
     aspect-ratio: 1/1;
 }
 
+h3 {
+    white-space: nowrap;
+}
+
 .news {
     grid-template-columns: repeat(2, 1fr);
     overflow-x: auto;
@@ -87,6 +91,8 @@ main {
 
 .news>div {
     justify-content: space-around;
+
+    overflow: auto;
 }
 
 .news-photo {

@@ -219,12 +219,38 @@ main::-webkit-scrollbar-thumb {
     }
 
     .add-join-competition {
+        position: inherit;
+
         grid-column: 3/4;
         grid-row: 1/2;
 
         height: 8vh;
         margin-right: 0;
-    }   
+    }
+
+    .dropdown_menu {
+        position: relative;
+
+        grid-column: 3/4;
+        grid-row: 1/2;
+
+        bottom: 20vh;
+
+        border-radius: 20px 20px 0 0;
+
+        flex-direction: column;
+    }
+
+    .dropdown_menu>a {
+        color: #116C73;
+        text-decoration: none;
+
+        border: 1px solid black;
+        border-radius: 20px;
+        background: #FECA4F;
+
+        padding: 10px;
+    }
 
     .user-profile {
         grid-column: 1/2;

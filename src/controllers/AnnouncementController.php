@@ -40,6 +40,8 @@ class AnnouncementController extends FileController {
         $messages = ['competition' => $this->competitionRepository->getCompetition($code),
             'creator' => $isCreator, 'announcements' => $announcements];
 
+        header("Location: competition?id=".$_POST['id'], true, 303);
+
         return $this->render('competition', $messages);
     }
 
@@ -53,5 +55,19 @@ class AnnouncementController extends FileController {
         http_response_code(200);
 
         echo json_encode($announcement);
+    }
+
+    public function news_mobile() {
+        if(!$this->isGet()) {
+            $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
+            return $this->render('main_page', $messages);
+        }
+
+        $code = $this->decodeCompetitionID();
+
+        $messages = ['announcements' => $this->announcementRepository->getAnnouncements($code)];
+
+        return $this->render('news_mobile', $messages);
     }
 }

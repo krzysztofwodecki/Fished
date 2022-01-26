@@ -45,7 +45,7 @@ Routing::get('attendee_list', 'AttendanceController');
 Routing::get('photos_mobile', 'DefaultController');
 Routing::get('map_mobile', 'DefaultController');
 Routing::get('achievements_mobile', 'DefaultController');
-Routing::get('news_mobile', 'DefaultController');
+Routing::get('news_mobile', 'AnnouncementController');
 
 
 Routing::run($path);

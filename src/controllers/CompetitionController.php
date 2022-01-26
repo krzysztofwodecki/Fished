@@ -3,16 +3,20 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../models/Competition.php';
 require_once __DIR__.'/../repository/CompetitionRepository.php';
+require_once __DIR__.'/../repository/AttendanceRepository.php';
+require_once __DIR__.'/../repository/AnnouncementRepository.php';
 
 class CompetitionController extends AppController {
     private $competitionRepository;
     private $announcementRepository;
+    private $attendanceRepository;
 
     public function __construct() {
 
         parent::__construct();
         $this->competitionRepository = new CompetitionRepository();
         $this->announcementRepository = new AnnouncementRepository();
+        $this->attendanceRepository = new AttendanceRepository();
     }
 
     public function competition() {
@@ -24,10 +28,12 @@ class CompetitionController extends AppController {
 
         $code = $this->decodeCompetitionID();
         $isCreator = $this->competitionRepository->isCreator($code);
+        $position = $this->attendanceRepository->getAttendeePosition($code);
 
         $messages = ['creator' => $isCreator,
             'competition' => $this->competitionRepository->getCompetition($code),
-            'announcements' => $this->announcementRepository->getAnnouncements($code)];
+            'announcements' => $this->announcementRepository->getAnnouncements($code),
+            'position' => $position];
 
         return $this->render('competition', $messages);
     }
@@ -54,8 +60,9 @@ class CompetitionController extends AppController {
         $this->createCode($competition);
 
         $this->competitionRepository->addCompetition($competition);
+        $position = $this->getUniquePosition($competition);
 
-        if(!$this->competitionRepository->addAttendee($competition->getCode())) {
+        if(!$this->competitionRepository->addAttendee($competition->getCode(), $position)) {
             $messages = ['messages' => "Napotkano błąd przy dodawaniu uczestnika",
                 'competitions' => $this->competitionRepository->getCompetitions()];
 
@@ -63,6 +70,8 @@ class CompetitionController extends AppController {
         }
 
         $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+
+        header('Location: main_page', true, 303);
 
         return $this->render('main_page', $messages);
     }
@@ -83,7 +92,7 @@ class CompetitionController extends AppController {
             return $this->render('main_page', $messages);
         }
 
-        if($competition->getRemainingSites($code) == 0) {
+        if($competition->getRemainingSites() == 0) {
             $messages['message'] = "Brak wolnych miejsc na zawodach";
 
             return $this->render('main_page', $messages);
@@ -110,9 +119,11 @@ class CompetitionController extends AppController {
             return $this->render('main_page', $messages);
         }
 
-        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
+//        $messages = ['competitions' => $this->competitionRepository->getCompetitions()];
 
-        return $this->render('main_page', $messages);
+        header('Location: main_page', true, 303);
+
+//        return $this->render('main_page', $messages);
     }
 
     public function main_page() {

@@ -17,7 +17,9 @@ class ScoreController extends AppController {
     }
 
     public function results() {
-        $this->isLogged();
+        if(!$this->isGet()) {
+            return $this->render('main_page');
+        }
 
         $code = $this->decodeCompetitionID();
         $scoreList = $this->scoreRepository->getScoreList($code);
@@ -40,11 +42,13 @@ class ScoreController extends AppController {
         $score = new Score($photo, $score, $argumentation);
 
         $this->scoreRepository->scorePhoto($score);
-        $code = $this->decodeCompetitionID();
 
+        $code = $this->decodeCompetitionID();
         $photos = $this->competitionPhotosRepository->getAllCompetitionPhotos($code);
         $isJudge = $this->competitionRepository->isJudge($code);
         $messages = ['photos' => $photos, 'isJudge' => $isJudge];
+
+        header("Location: competition_photos?id=".$_POST['id'], true, 303);
 
         return $this->render('competition_photos', $messages);
     }

@@ -9,18 +9,30 @@ class ScoreRepository extends Repository {
         $stmt = $this->database->connect()->prepare('
             SELECT ua.name, ua.surname, sum(s.score) as "score"
             FROM attendance a
-            LEFT JOIN score s ON s.id_attendance = a.id_attendance
+            INNER JOIN score s ON s.id_attendance = a.id_attendance
             INNER JOIN user_account ua ON a.id_user = ua.id_user_account
             INNER JOIN competitions c on a.id_competition = c.id_competitions
-            WHERE c.code = :code
+            WHERE c.code = :code and score is not null
             GROUP BY (ua.email, ua.name, ua.surname, s.score)
-            ORDER BY s.score
+            ORDER BY s.score DESC
         ');
 
         $stmt->bindParam(':code', $code);
         $stmt->execute();
-
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT ua.name, ua.surname, 0 as "score"
+            FROM attendance a
+            INNER JOIN user_account ua ON a.id_user = ua.id_user_account
+            INNER JOIN competitions c on a.id_competition = c.id_competitions
+            WHERE c.code = :code and not exists (SELECT * from score s where s.id_attendance = a.id_attendance)
+            GROUP BY (ua.email, ua.name, ua.surname)
+        ');
+
+        $stmt->bindParam(':code', $code);
+        $stmt->execute();
+        $array = array_merge($array, $stmt->fetchAll(PDO::FETCH_ASSOC));
         $scores = [];
 
         if($array != false) {
