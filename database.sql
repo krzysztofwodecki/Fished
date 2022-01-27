@@ -145,18 +145,34 @@ ORDER BY s.score DESC;
 INSERT INTO fisheries(name, address, town, postal, latitude, longitude) values
     ('Pogoria IV', 'Słoneczna 12', 'Dąbrowa Górnicza', '41-300', '50.365061539826286', '19.2066300269243');
 
+INSERT INTO fisheries(name, address, town, postal, latitude, longitude) values
+    ('Dziećkowice', 'Wesoła 13', 'Imielin', '51-323', '50.12778284497398', '19.219978966727012');
+
+INSERT INTO fisheries(name, address, town, postal, latitude, longitude) values
+    ('Kozłowa Góra', 'Prosta 6', 'Kozłowa Góra', '44-113', '50.416328694421196', '18.964251345914505');
+
 INSERT INTO user_account(email, name, surname, can_add_competitions) values
     ('mail@mail.com', 'Admin', 'Admin', true);
 
--- password: Admin123
+-- password: Admin123 - can add competitions
 
 INSERT INTO credentials(id_user, hash, date) values
     (1, '$2y$10$0Gv3NbbP2a5itXLlP8Ggh.z1pGOge0wADJjMJFzjI8tJ/Cg0yxSXS', '2022-01-26');
 
+INSERT INTO user_account(email, name, surname) values
+    ('gmail@gmail.com', 'Politechnika', 'Krakowska');
+
+-- password: Politechnika123 - judge, can grade photos
+
+INSERT INTO credentials(id_user, hash, date) values
+    (1, '$2y$10$LHTsAJ9aJ/owEsBW1GvIHOztJd9S0MhGKxbBAI83iUcmPtEGzTp0y', '2022-01-26');
+
 INSERT INTO competitions(name, date, gathering_time, start_time, end_time, code, id_place, sites, remaining_sites, creator)
-    values ('Grand Prix Dąbrowy Górniczej', '2022-02-13', '06:00:00', '07:00:00', '14:00:00', 'tt1DSK', 1, 70, 69, 1);
+    values ('Grand Prix Dąbrowy Górniczej', now(), '04:00:00', '05:00:00', '23:00:00', 'tt1DSK', 1, 70, 69, 1);
 
 INSERT INTO attendance(id_user, id_competition, position, judge) values (1, 1, 20, false);
 
+INSERT INTO attendance(id_user, id_competition, position, judge) values (2, 1, 30, true);
+
 INSERT INTO announcements(id_competition, title, content, date) values (1, 'Ogłoszenie',
-                                                'Zawody zostają przesunięte....', '2022-01-26 14:26:00.000000');
+                                                'Zawody zostają przesunięte....', '2022-02-03 14:26:00.000000');

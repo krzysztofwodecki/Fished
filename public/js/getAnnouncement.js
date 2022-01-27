@@ -20,9 +20,12 @@ fetch("/getAnnouncementDetails?announcementTitle=" + announcementTitle +
 function addDetails(details) {
     image.src = '/public/uploads/' + details['photo'];
     content.innerText = details['details'];
-    attachment.href = '/public/uploads/' + details['att'];
-    attachment.innerText = details['att'];
-    label.classList.add("visible");
-    label.classList.remove("hidden");
+
+    if(details['att'] !== null) {
+        attachment.href = '/public/uploads/' + details['att'];
+        attachment.innerText = details['att'];
+        label.classList.add("visible");
+        label.classList.remove("hidden");
+    }
 
 }

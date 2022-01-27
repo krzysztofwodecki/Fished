@@ -181,7 +181,7 @@
                 <?php if(isset($_GET['announcementTitle']) && $_GET['announcementTitle'] !== null): ?>
                     <div class="announcement">
                         <div>
-                            <img id="image">
+                            <img id="image" class="hidden">
                             <p><?=date("d.m.Y G:i", strtotime($_GET['announcementDate']))?></p>
                             <h1><?=$_GET['announcementTitle']?></h1>
                             <p id="content"></p>
