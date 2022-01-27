@@ -7,14 +7,8 @@ class ScoreRepository extends Repository {
 
     public function getScoreList(string $code) {
         $stmt = $this->database->connect()->prepare('
-            SELECT ua.name, ua.surname, sum(s.score) as "score"
-            FROM attendance a
-            INNER JOIN score s ON s.id_attendance = a.id_attendance
-            INNER JOIN user_account ua ON a.id_user = ua.id_user_account
-            INNER JOIN competitions c on a.id_competition = c.id_competitions
-            WHERE c.code = :code and score is not null AND a.judge is false
-            GROUP BY (ua.email, ua.name, ua.surname, s.score)
-            ORDER BY s.score DESC
+            SELECT * from all_scores a
+            WHERE a.code = :code
         ');
 
         $stmt->bindParam(':code', $code);
@@ -22,13 +16,8 @@ class ScoreRepository extends Repository {
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $stmt = $this->database->connect()->prepare('
-            SELECT ua.name, ua.surname, 0 as "score"
-            FROM attendance a
-            INNER JOIN user_account ua ON a.id_user = ua.id_user_account
-            INNER JOIN competitions c on a.id_competition = c.id_competitions
-            WHERE c.code = :code and not exists (SELECT * from score s where s.id_attendance = a.id_attendance)
-            AND a.judge is false
-            GROUP BY (ua.email, ua.name, ua.surname)
+            SELECT * FROM all_empty_scores aes
+            WHERE aes.code = :code
         ');
 
         $stmt->bindParam(':code', $code);

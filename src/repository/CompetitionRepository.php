@@ -8,11 +8,8 @@ class CompetitionRepository extends Repository {
 
     public function getCompetitions($user = null) {
         $stmt = $this->database->connect()->prepare('
-            SELECT *, c.name as "comp_name", f.name as "fishery_name" FROM public.competitions c
-            FULL JOIN attendance a ON a.id_competition = c.id_competitions
-            FULL JOIN user_account ua ON ua.id_user_account = a.id_user
-            FULL JOIN fisheries f on c.id_place = f.id_fisheries
-            WHERE ua.email = :email ORDER BY c.date;
+            SELECT * FROM full_competition_info
+            WHERE email = :email
         ');
 
         if($user === null) {

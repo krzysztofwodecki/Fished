@@ -125,22 +125,32 @@ create table score (
 );
 
 CREATE VIEW full_competition_info AS
-SELECT  c.name as "competition_name", c.date, c.gathering_time, c.start_time, c.end_time,
+SELECT  c.name as "comp_name", c.date, c.gathering_time, c.start_time, c.end_time,
         c.code, c.sites, c.remaining_sites, f.name as "fishery_name", f.address, f.town, f.postal,
-        ua.name as "creator_name", ua.surname, ua.email, ua.phone
+        ua.name as "creator_name", ua.surname, ua.email, ua.phone, latitude, longitude, id_place
 FROM competitions c
-         INNER JOIN fisheries f on c.id_place = f.id_fisheries
-         INNER JOIN user_account ua on c.creator = ua.id_user_account;
+INNER JOIN fisheries f on c.id_place = f.id_fisheries
+INNER JOIN user_account ua on c.creator = ua.id_user_account
+ORDER BY c.date;
 
 CREATE VIEW all_scores AS
-SELECT ua.name, ua.surname, sum(s.score) as "score"
+SELECT ua.name, ua.surname, sum(s.score) as "score", c.code
 FROM attendance a
          INNER JOIN score s ON s.id_attendance = a.id_attendance
          INNER JOIN user_account ua ON a.id_user = ua.id_user_account
          INNER JOIN competitions c on a.id_competition = c.id_competitions
-WHERE score is not null
-GROUP BY (ua.email, ua.name, ua.surname, s.score)
+WHERE score is not null AND a.judge is false
+GROUP BY (ua.email, ua.name, ua.surname, s.score, c.code)
 ORDER BY s.score DESC;
+
+CREATE VIEW all_empty_scores AS
+SELECT ua.name, ua.surname, 0 as "score", c.code
+FROM attendance a
+         INNER JOIN user_account ua ON a.id_user = ua.id_user_account
+         INNER JOIN competitions c on a.id_competition = c.id_competitions
+WHERE not exists (SELECT * from score s where s.id_attendance = a.id_attendance)
+  AND a.judge is false
+GROUP BY (ua.email, ua.name, ua.surname, c.code);
 
 INSERT INTO fisheries(name, address, town, postal, latitude, longitude) values
     ('Pogoria IV', 'Słoneczna 12', 'Dąbrowa Górnicza', '41-300', '50.365061539826286', '19.2066300269243');
