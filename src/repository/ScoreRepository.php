@@ -12,7 +12,7 @@ class ScoreRepository extends Repository {
             INNER JOIN score s ON s.id_attendance = a.id_attendance
             INNER JOIN user_account ua ON a.id_user = ua.id_user_account
             INNER JOIN competitions c on a.id_competition = c.id_competitions
-            WHERE c.code = :code and score is not null
+            WHERE c.code = :code and score is not null AND a.judge is false
             GROUP BY (ua.email, ua.name, ua.surname, s.score)
             ORDER BY s.score DESC
         ');
@@ -27,6 +27,7 @@ class ScoreRepository extends Repository {
             INNER JOIN user_account ua ON a.id_user = ua.id_user_account
             INNER JOIN competitions c on a.id_competition = c.id_competitions
             WHERE c.code = :code and not exists (SELECT * from score s where s.id_attendance = a.id_attendance)
+            AND a.judge is false
             GROUP BY (ua.email, ua.name, ua.surname)
         ');
 
